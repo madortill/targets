@@ -1,20 +1,40 @@
 var nPage = 0;
 var nFunction = 0;
 
+var setIntervalExplanation = null;
+
 var ArrPages = [
   {
     // opening game- page 0
     divName: "opening-game",
-    functions: [ 'buttons($("#next"), +1)', "openingGame()"], // array of functions that are needed to the page, functions of "buttons" in the start
+    functions: ["openingGame()"], // array of functions that are needed to the page, functions of "buttons" in the start
     moveButtons: false, // does this page contains back and next buttons - true/false
     lessonMap: false, // does this page contains lesson map - true/false
     robinText: "", // contains Robin's text (unless it is empty)
     instructions: "" // contains instructions' text (unless it is empty)
   },
   {
+    // opening game question- page 1
+    divName: "opening-game-question",
+    functions: ['buttons($("#prev"), -1)', 'buttons($("#next"), +1)', 'openingGameQuestion()'],
+    moveButtons: true,
+    lessonMap: false,
+    robinText: "",
+    instructions: "" 
+  },
+  {
+    // opening game explanation- page 2
+    divName: "opening-game-explanation",
+    functions: ['openingGameExplanation()', "setIntervalExplanation = setInterval(openingGameExplanation, 1000);"],
+    moveButtons: true,
+    lessonMap: false,
+    robinText: "",
+    instructions: "" 
+  },
+  {
     // opening game- page 1
     divName: "robin-trial",
-    functions: ['buttons($("#prev"), -1)', 'buttons($("#about"), 0)'],
+    functions: ['buttons($("#about"), 0)'],
     moveButtons: true, 
     lessonMap: true, 
     robinText: "", 
@@ -78,7 +98,7 @@ function buttons(button, page) {
     // the about page is not part of ArrPages
     // when user clicks about button an object is added to the array
     if (button === $("#about")) {
-      ArrPages.splice( 2 , 0 , 'functions: [], prev: true, next: true, lessonMap: false, robinText: "", instructions: "" ');
+      ArrPages.splice( 3 , 0 , 'functions: [], prev: true, next: true, lessonMap: false, robinText: "", instructions: "" ');
     }
     // hides last div
     $("#" + ArrPages[nPage].divName).css("display", "none");
@@ -91,7 +111,7 @@ function buttons(button, page) {
     
     // the about is removed from the array
     if (button === $("#about")) {
-      ArrPages.splice( 2 , 1 );
+      ArrPages.splice( 3 , 1 );
     }
   })
   // so there won't be double event listener
@@ -103,15 +123,15 @@ function buttons(button, page) {
 // the game of dragging arrow at the opening
 function openingGame() {
   // arrow draggable
-  $("#drag-arrow").draggable({
+  $("#opening-game .drag-arrow").draggable({
     revert: "invalid",
     revertDuration: 200,
     containment: "parent"
   });
   // for more then one time
-  $("#drag-arrow").draggable("enable");
+  $("#opening-game .drag-arrow").draggable("enable");
   // grass dropabble
-  $("#drop-grass").droppable({
+  $("#opening-game .drop-grass").droppable({
     tolerance: "touch",
     drop: function(e,ui) {
       ui.draggable.draggable("disable");
@@ -119,7 +139,7 @@ function openingGame() {
       ui.draggable.animate({top: "8.1rem", left: "-66vw"}, 200, function() {
         // in the end of the animation moving to the next page
         setTimeout(function(){
-          $("#drag-arrow").css({"left": "-2vw","top": "6.3rem"});
+          $("#opening-game .drag-arrow").css({"left": "-2vw","top": "6.3rem"});
           $("#opening-game").css("display", "none");
           nPage++;
           movePage();
@@ -128,4 +148,27 @@ function openingGame() {
     }
   });
 }
+
+// bubble speech animation at question of the game
+function openingGameQuestion() {
+  // the function won't be called again
+  ArrPages[nPage].functions.pop();
+  // clear interval from next page's animation
+  if (setIntervalExplanation !== null) {
+    clearInterval(setIntervalExplanation);
+  }
+  setTimeout(function(){
+    $("#opening-game-question .big-speech-bubble").html("כל הכבוד! עזרתם לי לפתור את החידה!<br>רגע... איזו חידה?");
+  }, 1000);
+  setTimeout(function(){
+    $("#opening-game-question .big-speech-bubble").html("כל הכבוד! עזרתם לי לפתור את החידה!<br>רגע... איזו חידה?<br>האם הרגשתם שהזזת החץ הייתה פעולה <b>חסרת תועלת<b>?");
+  }, 2000);   
+}
+
+// animation of arrow moving to explain the math exer
+function openingGameExplanation() {
+  $("#opening-game-explanation .drag-arrow").delay(100).animate({top: "8.1rem", left: "-66vw"}, 1000).delay(100).animate({top: "6.3rem", left: "-2vw"}, 1000);
+}
+
+
 
