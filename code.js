@@ -102,21 +102,37 @@ function buttons(button, page) {
 
 // the game of dragging arrow at the opening
 function openingGame() {
+  // arrow glow animation
+  setTimeout(function(){
+    $("#drag-arrow").css("filter", "brightness(1.5)");
+  }, 1000);
+  setTimeout(function(){
+    $("#drag-arrow").css("filter", "brightness(1)");
+  }, 1100);
+  setTimeout(function(){
+    $("#drag-arrow").css("filter", "brightness(1.5)");
+  }, 1300);
+  setTimeout(function(){
+    $("#drag-arrow").css("filter", "brightness(1)");
+  }, 1400);
+  // arrow draggable
   $("#drag-arrow").draggable({
     revert: "invalid",
     revertDuration: 200,
     containment: "parent"
   });
+  // for more then one time
   $("#drag-arrow").draggable("enable");
+  // grass dropabble
   $("#drop-grass").droppable({
     tolerance: "touch",
     drop: function(e,ui) {
       ui.draggable.draggable("disable");
       // animation to put the arrow in place
-      ui.draggable.animate({top: "7.9rem", left: "-70vw"}, 200, function() {
+      ui.draggable.animate({top: "8.1rem", left: "-66vw"}, 200, function() {
         // in the end of the animation moving to the next page
         setTimeout(function(){
-          $("#drag-arrow").css({"left": "-5vw","top": "6.3rem"});
+          $("#drag-arrow").css({"left": "-2vw","top": "6.3rem"});
           $("#opening-game").css("display", "none");
           nPage++;
           movePage();
