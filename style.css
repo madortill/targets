@@ -129,6 +129,7 @@ body, #main {
   left: -2vw;
   top: 6.3rem;
   padding: 13px;
+  filter: drop-shadow(0 0 0.25rem rgb(223, 252, 8));
 }
 
 #drop-grass {
