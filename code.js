@@ -102,19 +102,6 @@ function buttons(button, page) {
 
 // the game of dragging arrow at the opening
 function openingGame() {
-  // arrow glow animation
-  setTimeout(function(){
-    $("#drag-arrow").css("filter", "brightness(1.5)");
-  }, 1000);
-  setTimeout(function(){
-    $("#drag-arrow").css("filter", "brightness(1)");
-  }, 1100);
-  setTimeout(function(){
-    $("#drag-arrow").css("filter", "brightness(1.5)");
-  }, 1300);
-  setTimeout(function(){
-    $("#drag-arrow").css("filter", "brightness(1)");
-  }, 1400);
   // arrow draggable
   $("#drag-arrow").draggable({
     revert: "invalid",
