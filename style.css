@@ -1,0 +1,183 @@
+/* general */
+@font-face {
+  font-family: nehama;
+  src: url(assets/fonts/nehama-webfont.ttf), url(assets/fonts/nehama-webfont.eot);
+}
+
+@font-face {
+  font-family: Rubik;
+  src: url(assets/fonts/Rubik-Regular.ttf);
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: Rubik-Bold;
+  src: url(assets/fonts/Rubik-Bold.ttf);
+  font-weight: 800;
+}
+
+html,
+body, #main {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  direction: rtl;
+  font-family: "Rubik";
+}
+
+#main {
+  background-image: url("assets/media/bg.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  background-size: cover;
+}
+
+.page {
+  display: none;
+}
+
+.container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+}
+
+#controls {
+  position: fixed;
+  bottom: 0;
+  height: 23.5vw;
+  width: 100%;
+  background-color: rgba(240, 255, 255, 0.5);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  padding-right: 2vw;
+  padding-left: 2vw;
+  z-index: 1;
+}
+
+ #controls .control-button {
+   width: 10vw;
+   margin-right: 1vw;
+   margin-left: 1vw;
+ }
+ 
+ #prev {
+  transform: rotate(180deg);
+ }
+
+ #lesson-map .container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: nowrap;
+  height: 90%;
+  width: 70vw;
+  margin-right: 1vw;
+ }
+
+ #lesson-map .topic {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  width: 25%;
+  height: 100%;
+ }
+
+.lesson-map-target {
+  width: 65%;
+}
+
+.topic-text {
+  text-align: center;
+  font-family: "Rubik-Bold";
+  font-size: 3.8vw;
+  width: 100%;
+  height: 4vh;
+  color: rgb(60, 60, 59);
+  line-height: 1.1;
+}
+
+/* opening game */
+#arrows-structure {
+  position: fixed;
+  top: 6rem;
+  width: 90%;
+  margin: 5% auto;
+  left: 0;
+  right: 0;
+}
+
+.robin-hod {
+  position: fixed;
+  z-index: 2;
+  bottom: 0;
+  height: 55vh;
+  right: -15vw;
+}
+
+#drag-arrow {
+  position: relative;
+  width: 19vw;
+  z-index: 2;
+  left: -5vw;
+  top: 6.3rem;
+}
+
+#drop-grass {
+  position: fixed;
+  width: 19vw;
+  z-index: 1;
+  right: 70vw;
+  top: 8.2rem;
+}
+
+.speech-bubble {
+  font-family: "nehama";
+  font-size: 1.7rem;
+  color: rgb(60, 60, 59);
+  /* background-size: 100% 100%; */
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  /* background-size: cover; */
+}
+
+.big-speech-bubble {
+  position: fixed;
+  z-index: 2;
+  bottom: 0;
+  width: 62vw;
+  /* height: 20vh; */
+  left: 0;
+  padding: 4vw;
+  padding-top: 10vw;
+  background-image: url(assets/media/bubble.png);
+}
+
+#opening-game .container {
+  height: 45vh;
+}
+
+
+/*  */
+
+
+#robin-trial .container {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+#bubble-robin-big {
+  bottom: 0px;
+  position: fixed;
+  z-index: 0;
+  height: 59vw;
+  right: -5vw;
+}
