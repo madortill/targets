@@ -126,8 +126,9 @@ body, #main {
   position: relative;
   width: 19vw;
   z-index: 2;
-  left: -5vw;
+  left: -2vw;
   top: 6.3rem;
+  padding: 13px;
 }
 
 #drop-grass {
@@ -135,7 +136,7 @@ body, #main {
   width: 19vw;
   z-index: 1;
   right: 70vw;
-  top: 8.2rem;
+  top: 8.5rem;
 }
 
 .speech-bubble {
