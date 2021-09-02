@@ -16,7 +16,7 @@ var ArrPages = [
   {
     // opening game question- page 1
     divName: "opening-game-question",
-    functions: ['buttons($("#prev"), -1)', 'buttons($("#next"), +1)', 'openingGameQuestion()'],
+    functions: ['buttons($("#prev"), -1)', 'buttons($("#next"), +1)','clearIntervalExplanation()', 'openingGameQuestion()'],
     moveButtons: true,
     lessonMap: false,
     robinText: "",
@@ -26,6 +26,15 @@ var ArrPages = [
     // opening game explanation- page 2
     divName: "opening-game-explanation",
     functions: ['openingGameExplanation()', "setIntervalExplanation = setInterval(openingGameExplanation, 1000);"],
+    moveButtons: true,
+    lessonMap: false,
+    robinText: "",
+    instructions: "" 
+  },
+  {
+    // opening game explanation- page 2
+    divName: "opening-game-explanation",
+    functions: ['clearIntervalExplanation()'],
     moveButtons: true,
     lessonMap: false,
     robinText: "",
@@ -154,15 +163,19 @@ function openingGameQuestion() {
   // the function won't be called again
   ArrPages[nPage].functions.pop();
   // clear interval from next page's animation
-  if (setIntervalExplanation !== null) {
-    clearInterval(setIntervalExplanation);
-  }
+
   setTimeout(function(){
     $("#opening-game-question .big-speech-bubble").html("כל הכבוד! עזרתם לי לפתור את החידה!<br>רגע... איזו חידה?");
   }, 1000);
   setTimeout(function(){
     $("#opening-game-question .big-speech-bubble").html("כל הכבוד! עזרתם לי לפתור את החידה!<br>רגע... איזו חידה?<br>האם הרגשתם שהזזת החץ הייתה פעולה <b>חסרת תועלת<b>?");
   }, 2000);   
+}
+
+function clearIntervalExplanation(){
+  if (setIntervalExplanation !== null) {
+    clearInterval(setIntervalExplanation);
+  }
 }
 
 // animation of arrow moving to explain the math exer
