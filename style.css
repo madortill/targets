@@ -46,6 +46,46 @@ body, #main {
   z-index: 0;
 }
 
+.speech-bubble {
+  font-family: "nehama";
+  font-size: 1.5rem;
+  color: rgb(60, 60, 59);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.content-flex {
+  display: flex;
+  position: relative;
+  width: 85%;
+  margin: auto;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.content, .title {
+  backdrop-filter: blur(3px);
+  color: rgb(60, 60, 59);
+  padding: 1.5vh 4vw;
+}
+
+.title {
+  font-family: "Rubik-Bold";
+  font-size: 1.5rem;
+}
+
+.content {
+  border-radius: 2vw;
+  width: 100%;
+  background-color: rgba(240, 255, 255, 0.6);
+  font-family: "Rubik";
+  font-size: 1rem;
+  margin-top: 5vw;
+}
+
+
+/* controls */
 #controls {
   position: fixed;
   bottom: 0;
@@ -105,9 +145,10 @@ body, #main {
 }
 
 /* opening game */
+/* general */
 .arrows-structure {
   position: fixed;
-  top: 6rem;
+  top: 8rem;
   width: 90%;
   margin: 5% auto;
   left: 0;
@@ -118,10 +159,14 @@ body, #main {
   position: fixed;
   z-index: 2;
   bottom: 0;
+}
+
+#general-opening-game .robin-hod {
   height: 55vh;
   right: -15vw;
 }
 
+/* pages 0-2 */
 .drag-arrow {
   position: relative;
   width: 19vw;
@@ -131,7 +176,7 @@ body, #main {
 
 #opening-game .drag-arrow, #opening-game-explanation .drag-arrow {
   left: -2vw;
-  top: 6.3rem;
+  top: 8.3rem;
 }
 
 #opening-game .drag-arrow{
@@ -139,7 +184,7 @@ body, #main {
 }
 
 #opening-game-question .drag-arrow {
-  top: 8.1rem;
+  top: 10.1rem;
   left: -66vw;
 }
 
@@ -148,20 +193,10 @@ body, #main {
   width: 19vw;
   z-index: 1;
   right: 70vw;
-  top: 8.5rem;
+  top: 10.5rem;
 }
 
-.speech-bubble {
-  font-family: "nehama";
-  font-size: 1.5rem;
-  color: rgb(60, 60, 59);
-  /* background-size: 100% 100%; */
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  /* background-size: cover; */
-}
-
-.big-speech-bubble {
+#general-opening-game .speech-bubble {
   position: fixed;
   z-index: 2;
   bottom: 0;
@@ -173,13 +208,134 @@ body, #main {
   background-image: url(assets/media/bubble.png);
 }
 
+/* for the container of jquery animation */
 #opening-game .container {
   height: 45vh;
 }
 
+#arrows-numbers {
+  position: fixed;
+  top: 4rem;
+  width: 100%;
+  height: 10%;
+  color: white;
+  direction: ltr;
+  font-family: "nehama";
+  text-align: center;
+  font-size: 20vh;
+}
+
+/* pages 3*/
+#opening-game-conclusion .speech-bubble,  #about .speech-bubble {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  width: 90%;
+  left: 0;
+  padding: 5vw;
+  background-image: url(assets/media/bubble_big.png);
+}
+
+#opening-game-conclusion .speech-bubble {
+  height: 38vmax;
+  padding-top: 10vw;
+}
+
+#opening-game-conclusion .robin-hod {
+  height: 65vh;
+  right: -15vw;
+}
+
+#opening-game-conclusion .speech-bubble span {
+  color: rgb(227, 2, 15);
+}
+
+/* opening */
+#opening {
+  height: 180vmin;
+}
+
+#opening .container {
+  background-image: url("assets/media/2פתיחה/bg_open.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  background-size: cover;
+}
+
+#play {
+  height: 64vh;
+  left: 100vw;
+  bottom: -1vh;
+}
+
+#about-button {
+  position: fixed;
+  width: 28vw;
+  margin: 2vh 2vw;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  z-index: 3;
+}
+
+/* about */
+.logo {
+  width: 10vw;
+}
+
+#about .speech-bubble div {
+  width: 100%;
+  text-align: center;
+  font-size: 15vw;
+}
+
+#about .speech-bubble {
+  height: 65vmax;
+}
+
+#about .robin-hod {
+  height: 45vh;
+  right: -18vw;
+  bottom: -1vw;
+}
+
+/* lesson-goals */
+#lesson-goals .robin-hod {
+  height: 45vh;
+  right: -15vw;
+}
+
+#lesson-goals .speech-bubble {
+  position: fixed;
+  z-index: 2;
+  bottom: 23.5vw;
+  width: 59vw;
+  height: 17vw;
+  left: 0;
+  padding-right: 9vw;
+  padding-top: 5vw;
+  background-image: url(assets/media/bubble_small.svg);
+}
+
+#lesson-goals .content-flex {
+  top: 5vh;
+}
+
+#lesson-goals .title {
+  background-color: rgba(240, 255, 255, 0.6);
+}
+
+#lesson-goals .content {
+  height: 60vh;
+}
+
+#lesson-goals .content div{
+  font-family: "Rubik-Bold";
+  font-size: 1.1rem;
+}
 
 /*  */
-
 
 #robin-trial .container {
   align-items: center;
