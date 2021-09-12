@@ -80,7 +80,7 @@ body, #main {
   width: 100%;
   background-color: rgba(240, 255, 255, 0.6);
   font-family: "Rubik";
-  font-size: 1rem;
+  font-size: 1.1rem;
   margin-top: 5vw;
 }
 
@@ -291,7 +291,7 @@ body, #main {
 }
 
 #about .speech-bubble {
-  height: 50vmax;
+  height: 46vmax;
 }
 
 #about .robin-hod {
@@ -310,10 +310,11 @@ body, #main {
   position: fixed;
   z-index: 2;
   bottom: 23.5vw;
-  width: 59vw;
+  width: 55vw;
   height: 17vw;
   left: 0;
   padding-right: 9vw;
+  padding-left: 4vw;
   padding-top: 5vw;
   background-image: url(assets/media/bubble_small.svg);
 }
