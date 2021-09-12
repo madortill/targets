@@ -205,7 +205,7 @@ body, #main {
   left: 0;
   padding: 4vw;
   padding-top: 10vw;
-  background-image: url(assets/media/bubble.png);
+  background-image: url(assets/media/bubble.svg);
 }
 
 /* for the container of jquery animation */
@@ -233,7 +233,7 @@ body, #main {
   width: 90%;
   left: 0;
   padding: 5vw;
-  background-image: url(assets/media/bubble_big.png);
+  background-image: url(assets/media/bubble_big.svg);
 }
 
 #opening-game-conclusion .speech-bubble {
