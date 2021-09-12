@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/JQuery/jquery-ui.css">
-    <link rel="stylesheet" href="assets/splide-2.4.21/splide-2.4.21/dist/css/splide.min.css">
     <link rel="stylesheet" href="style.css">
     <script src="assets/JQuery/jquery-3.4.1.min.js"></script>
     <script src="assets/JQuery/jquery-ui.min.js"></script>
@@ -12,46 +11,80 @@
     <script src="assets/splide-2.4.21/splide-2.4.21/dist/js/splide.min.js"></script> -->
     <!-- jquery library for phones -->
     <script src="assets/JQuery/jquery.ui.touch-punch.js"></script>
-    <script src="code.js"></script>   
+    <script src="code.js"></script>
+    <script src="opening.js"></script>      
     <title>מטרות</title>
   </head>
   <body>
 <div id="main">
-  <!-- page 1 -->
+  <!-- opening game -->
+  <!-- general div that is used in all the opening game -->
+  <div id="general-opening-game" class="page">
+    <div class="container">
+      <img class="arrows-structure" src="assets/media/1גפרורים/math_arrows.svg">
+      <img class="robin-hod" src="assets/media/robin hood.svg">
+    </div>
+    <div class="speech-bubble"></div>
+  </div>
+  <!-- page 0 -->
     <div id="opening-game" class="page">
       <div class="container">
-        <img class="arrows-structure" src="assets/media/1גפרורים/math_arrows.svg">
         <img class="drag-arrow" src="assets/media/1גפרורים/blue_arrow.svg">
         <img class="drop-grass" src="assets/media/1גפרורים/yellow.svg">
-        <img class="robin-hod" src="assets/media/robin hood.svg">
       </div>
-      <div class="big-speech-bubble speech-bubble">היי! אני הוא רובין הו"ד!<br><br>בבקשה תגררו את החץ הכחול אל החלקה הצהובה</div>
     </div>
-  <!-- page 2 -->
+  <!-- page 1 -->
     <div id="opening-game-question" class="page">
       <div class="container">
-        <img class="arrows-structure" src="assets/media/1גפרורים/math_arrows.svg">
         <img class="drag-arrow" src="assets/media/1גפרורים/red_arrow.svg">
-        <img class="robin-hod" src="assets/media/robin hood.svg">
       </div>
-      <div class="big-speech-bubble speech-bubble">כל הכבוד! עזרתם לי לפתור את החידה!</div>
     </div>
-  <!-- page 3 -->
+  <!-- page 2 -->
     <div id="opening-game-explanation" class="page">
       <div class="container">
-        <img class="arrows-structure" src="assets/media/1גפרורים/math_arrows.svg">
+        <div id="arrows-numbers">110 = 7</div>
         <img class="drag-arrow" src="assets/media/1גפרורים/red_arrow.svg">
+      </div>
+    </div>
+    <!-- page 3 -->
+    <div id="opening-game-conclusion" class="page">
+      <div class="container">
+        <div class="speech-bubble"></div>
         <img class="robin-hod" src="assets/media/robin hood.svg">
       </div>
-      <div class="big-speech-bubble speech-bubble">למעשה על ידי גרירה של החץ האדום למיקום המיועד הצלחתם להפוך את התרגיל המתמטי הנתון לתרגיל הגיוני</div>
     </div>
+    <!-- opening -->
+    <!-- page 4 -->
+    <div id="opening" class="page">
+      <div class="container">
+        <img id="play" class="robin-hod" src="assets/media/2פתיחה/play.svg">
+        <img id="about-button" src="assets/media/2פתיחה/about.svg">
+      </div>
+    </div>
+    <!-- about -->
+    <div id="about" class="page">
+        <div class="container">
+          <div class="speech-bubble"></div>
+          <img class="robin-hod" src="assets/media/tali.svg">
+        </div>
+    </div>
+    <div id="lesson-goals" class="page">
+      <div class="container">
+        <div class="content-flex">
+          <div class="title">מטרות הלומדה</div>
+          <div class="content"><div>מטרת על</div>החניך יתווה מטרות ומערך שיעור על פי עקרונות מנחים.<br><br><div>מטרות ביניים</div>1. החייל יתמצא בעקרונות המנחים לכתיבת מטרות שיעור<br>2. החייל יגדיר את מבנה מערך השיעור.<br>3. החייל יבין את הדרכים לכתיבת מערך שיעור ודף רץ.</div>
+        </div>
+        <img class="robin-hod" src="assets/media/robin hood.svg">
+      </div>
+      <div class="speech-bubble"></div>
+  </div>
     <div id="robin-trial" class="page">
       <div class="container">
         <img src="assets/media/bubble_fullrobin.svg" id="bubble-robin-big">
       </div>
     </div>
 
-      <!-- prev/next + lesson map -->
+  <!-- prev/next + lesson map -->
     <div id ="controls">
       <img src="assets/media/next.svg" id="prev" class="control-button" alt="הקודם">
       <img src="assets/media/next.svg" id="next" class="control-button" alt="הבא">
