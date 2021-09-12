@@ -1,59 +1,77 @@
 var nPage = 0;
-var nFunction = 0;
-
-var setIntervalExplanation = null;
+// var nFunction = 0;
 
 var ArrPages = [
   {
     // opening game- page 0
-    divName: "opening-game",
-    functions: ["openingGame()"], // array of functions that are needed to the page, functions of "buttons" in the start
+    divName: ["opening-game", "general-opening-game"], // the last div contains the speech bubble
+    functions: ["openingGame()"], // array of functions that are needed to the page. If the functions contain the word "pop", it will happen only once and will be popped out of the array afterwards
     moveButtons: false, // does this page contains back and next buttons - true/false
     lessonMap: false, // does this page contains lesson map - true/false
-    robinText: "", // contains Robin's text (unless it is empty)
-    instructions: "" // contains instructions' text (unless it is empty)
+    robinText: 'היי! אני הוא רובין הו"ד!<br><br>בבקשה תגררו את החץ הכחול אל החלקה הצהובה' // contains Robin's text (unless it is empty)
   },
   {
     // opening game question- page 1
-    divName: "opening-game-question",
-    functions: ['buttons($("#prev"), -1)', 'buttons($("#next"), +1)','clearIntervalExplanation()', 'openingGameQuestion()'],
+    divName: ["opening-game-question", "general-opening-game"],
+    functions: ['pop_buttons($("#prev"), -1)', 'pop_buttons($("#next"), +1)', 'clearIntervalExplanation()', 'pop_openingGameQuestion()'],
     moveButtons: true,
     lessonMap: false,
-    robinText: "",
-    instructions: "" 
+    robinText: 'כל הכבוד! עזרתם לי לפתור את החידה!'
   },
   {
     // opening game explanation- page 2
-    divName: "opening-game-explanation",
-    functions: ['openingGameExplanation()', "setIntervalExplanation = setInterval(openingGameExplanation, 1000);"],
+    divName: ["opening-game-explanation", "general-opening-game"],
+    functions: ['openingGameExplanation()', "setIntervalExplanation = setInterval(openingGameExplanation, 2600);"],
     moveButtons: true,
     lessonMap: false,
-    robinText: "",
-    instructions: "" 
+    robinText: 'למעשה על ידי גרירה של החץ האדום למיקום המיועד הצלחתם להפוך את התרגיל המתמטי הנתון לתרגיל הגיוני'
   },
   {
-    // opening game explanation- page 2
-    divName: "opening-game-explanation",
+    // opening game conclusion- page 3
+    divName: ["opening-game-conclusion"],
     functions: ['clearIntervalExplanation()'],
     moveButtons: true,
     lessonMap: false,
-    robinText: "",
-    instructions: "" 
+    robinText: "אילו הייתם מבינים מה <span>המטרה</span> של הפעולה, הייתם נהנים יותר במהלך פתרון החידה, ולא הייתם מרגישים שאתם מבזבזים את הזמן.<br><br> כך בדיוק נבנה גם שיעור- אם אין לו מטרות הוא מאבד מהיעילות שלו."
   },
   {
-    // opening game- page 1
-    divName: "robin-trial",
-    functions: ['buttons($("#about"), 0)'],
+    // opening game question- page 4
+    divName: ["opening"],
+    functions: ['pop_opening()', 'pop_buttons($("#play"), 2)', 'pop_buttons($("#about-button"), 1)'],
+    moveButtons: false,
+    lessonMap: false,
+    robinText: "" 
+  },
+  {
+    // about- page 5
+    divName: ["about"],
+    functions: [],
+    moveButtons: true,
+    lessonMap: false,
+    robinText: '<img id="till" class="logo" src="assets/media/symbols/tilblack.svg"><div><b>אודות</b></div><b>רמ"ד טיל-</b> רס"ן מיגל לוויתן<br><b>רת"ח מו"פ וחדשנות בלמידה-</b> סמ"ר גל גנסין<br><b>עיצוב גרפי-</b> סמל מייה ליבנה<br><b>תכנות-</b> רב"ט טל סרוסי<br><b>מומחית תוכן-</b> סג"מ שירה רוט<br>גרסה</b>- אוקטובר 2021<b></div>'
+  },
+  {
+    // lesson's goals- page 6
+    divName: ["lesson-goals"],
+    functions: ['goTwoBack(-2)', 'pop_goTwoBack_opening()'],
+    moveButtons: true,
+    lessonMap: true,
+    robinText: "וכמו בכל שיעור, נתחיל עם הצגת המטרות!"
+  },
+  {
+    // opening game- page ?
+    divName: ["robin-trial"],
+    functions: ['goTwoBack(-1)'], // remember!!!!!!!!!!!!!!!!!!! to move it to the correct page
     moveButtons: true, 
     lessonMap: true, 
-    robinText: "", 
-    instructions: "" 
+    robinText: ""
   }, 
 ];
 
 $(function() {
   // calls the opening game
   movePage();
+
 
   // add event listenes to buttons
 
@@ -68,14 +86,30 @@ $(function() {
 });
 
 function movePage() {
-  // shows current div
-  $("#" + ArrPages[nPage].divName).css("display", "block");
-
-  // calls the functions of the page
-  for (nFunction = 0; nFunction < ArrPages[nPage].functions.length; nFunction++) {
-    eval(ArrPages[nPage].functions[nFunction]);
+  // appearance
+  // shows current divs
+  for (let i = 0; i < ArrPages[nPage].divName.length; i++) {
+    $("#" + ArrPages[nPage].divName[i]).css("display", "block");
   }
-
+  // shows bubble speech text (the last div in the divs array contains a bubble speech)
+  if (ArrPages[nPage].robinText !== "") {
+  $("#" + ArrPages[nPage].divName[ArrPages[nPage].divName.length - 1] + " .speech-bubble").html(ArrPages[nPage].robinText);
+  }
+  // functions
+  // calls the functions of the page
+  if (ArrPages[nPage].functions !== "") {
+    let nFunction = 0;
+    while (nFunction < ArrPages[nPage].functions.length) {
+      eval(ArrPages[nPage].functions[nFunction]);
+      // functions that contains the word "pop" will accur only once
+      if (ArrPages[nPage].functions[nFunction].includes("pop")) {
+        ArrPages[nPage].functions.splice(nFunction , 1);
+        // since the function happens only once there is no need in adding nFunction +1
+      } else {
+        nFunction++;
+      }
+    }
+  }
   // controls
   // if there is no controls, hide the white background
   if (ArrPages[nPage].moveButtons === false && ArrPages[nPage].lessonMap === false) {
@@ -88,8 +122,6 @@ function movePage() {
   // show/hide controls
   controls("moveButtons" ,"#controls .control-button");
   controls("lessonMap", "#lesson-map");
-
-  // !!!remember to check put text!!!
 }
 
 // function that checks if the buttons should be shown or hidden
@@ -101,87 +133,16 @@ function controls(state, object) {
   }
 }
 
-// function that adds events listeners to buttons- called only one time for each button
-function buttons(button, page) {
+// function that adds events listeners to buttons that affects the page's display- called only one time for each button
+function pop_buttons(button, page) {
   button.on("click", function() {
-    // the about page is not part of ArrPages
-    // when user clicks about button an object is added to the array
-    if (button === $("#about")) {
-      ArrPages.splice( 3 , 0 , 'functions: [], prev: true, next: true, lessonMap: false, robinText: "", instructions: "" ');
+    // hides last divs
+    for (let i = 0; i < ArrPages[nPage].divName.length; i++) {
+      $("#" + ArrPages[nPage].divName[i]).css("display", "none");
     }
-    // hides last div
-    $("#" + ArrPages[nPage].divName).css("display", "none");
-
     // changes page counter
     nPage = nPage + page;
-
     // shows next page
-    movePage(); 
-    
-    // the about is removed from the array
-    if (button === $("#about")) {
-      ArrPages.splice( 3 , 1 );
-    }
+    movePage();     
   })
-  // so there won't be double event listener
-  ArrPages[nPage].functions.shift();
-  // אנחנו מורידים את הגודל של המערך באחד ולכן כדי שייכנסו ללולאה שוב גם הגודל של מונה הלולאה צריך לרדת באחד כדי שיהיה אפשר להיכנס אליה
-  nFunction--;
 }
-
-// the game of dragging arrow at the opening
-function openingGame() {
-  // arrow draggable
-  $("#opening-game .drag-arrow").draggable({
-    revert: "invalid",
-    revertDuration: 200,
-    containment: "parent"
-  });
-  // for more then one time
-  $("#opening-game .drag-arrow").draggable("enable");
-  // grass dropabble
-  $("#opening-game .drop-grass").droppable({
-    tolerance: "touch",
-    drop: function(e,ui) {
-      ui.draggable.draggable("disable");
-      // animation to put the arrow in place
-      ui.draggable.animate({top: "8.1rem", left: "-66vw"}, 200, function() {
-        // in the end of the animation moving to the next page
-        setTimeout(function(){
-          $("#opening-game .drag-arrow").css({"left": "-2vw","top": "6.3rem"});
-          $("#opening-game").css("display", "none");
-          nPage++;
-          movePage();
-          }, 1000);
-      });
-    }
-  });
-}
-
-// bubble speech animation at question of the game
-function openingGameQuestion() {
-  // the function won't be called again
-  ArrPages[nPage].functions.pop();
-  // clear interval from next page's animation
-
-  setTimeout(function(){
-    $("#opening-game-question .big-speech-bubble").html("כל הכבוד! עזרתם לי לפתור את החידה!<br>רגע... איזו חידה?");
-  }, 1000);
-  setTimeout(function(){
-    $("#opening-game-question .big-speech-bubble").html("כל הכבוד! עזרתם לי לפתור את החידה!<br>רגע... איזו חידה?<br>האם הרגשתם שהזזת החץ הייתה פעולה <b>חסרת תועלת<b>?");
-  }, 2000);   
-}
-
-function clearIntervalExplanation(){
-  if (setIntervalExplanation !== null) {
-    clearInterval(setIntervalExplanation);
-  }
-}
-
-// animation of arrow moving to explain the math exer
-function openingGameExplanation() {
-  $("#opening-game-explanation .drag-arrow").delay(100).animate({top: "8.1rem", left: "-66vw"}, 1000).delay(100).animate({top: "6.3rem", left: "-2vw"}, 1000);
-}
-
-
-
