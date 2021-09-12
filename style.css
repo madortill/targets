@@ -319,7 +319,7 @@ body, #main {
   background-image: url(assets/media/bubble_small.svg);
 }
 
-#lesson-goals .content-flex {
+#lesson-goals .content-flex, #assessment .content-flex {
   top: 5vh;
 }
 
@@ -327,13 +327,59 @@ body, #main {
   background-color: rgba(240, 255, 255, 0.6);
 }
 
-#lesson-goals .content {
+#lesson-goals .content, #assessment .content {
   height: 60vh;
 }
 
 #lesson-goals .content div{
   font-family: "Rubik-Bold";
   font-size: 1.1rem;
+}
+
+/* assesment */
+#assessment .speech-bubble {
+  position: fixed;
+  z-index: 2;
+  top: 30vh;
+  width: 92vw;
+  height: 20vh;
+  left: 0;
+  padding: 4vh 4vw;
+  /* padding-top: 10vw; */
+  background-image: url(assets/media/3הערכת\ מצב/bubble_arrowhead_big.svg);
+}
+
+#assessment .title {
+  background-color: rgba(81, 252, 252, 0.6);
+}
+
+#arrow-head {
+  position: fixed;
+  bottom: 0;
+  width: 83vw;
+  right: 0;
+  z-index: 2;
+}
+
+.triangle {
+  width: 83vw;
+  position: fixed;
+  z-index: 2;
+}
+
+#triangle-1 {
+  bottom: 0vh;
+  right: 0vw;
+}
+
+#triangle-2 {
+  bottom: 0vh;
+  right: 0vw;
+}
+
+#triangle-3 {
+  bottom: 0vh;
+  right: 0vw;
 }
 
 /*  */
