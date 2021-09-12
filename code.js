@@ -59,13 +59,21 @@ var ArrPages = [
     robinText: "וכמו בכל שיעור, נתחיל עם הצגת המטרות!"
   },
   {
+    // assessment- page 7
+    divName: ["assessment"],
+    functions: ['goTwoBack(-1)'], 
+    moveButtons: true, 
+    lessonMap: true, 
+    robinText: 'כיאה ללוחם אמיץ כמוני, אני משתמש במשולש לח"מ- לומד, חומר ומלמד.<br>לחצו על כל אחד מהמשולשים שמרכיבים את החץ כדי לקרוא עליו (לא תוכלו לעבור עמוד לפני שתלמדו על כולם)'
+  },
+  {
     // opening game- page ?
     divName: ["robin-trial"],
-    functions: ['goTwoBack(-1)'], // remember!!!!!!!!!!!!!!!!!!! to move it to the correct page
+    functions: ['goTwoBack(-1)'],
     moveButtons: true, 
     lessonMap: true, 
     robinText: ""
-  }, 
+  },
 ];
 
 $(function() {
