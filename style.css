@@ -237,12 +237,12 @@ body, #main {
 }
 
 #opening-game-conclusion .speech-bubble {
-  height: 38vmax;
+  height: 35vmax;
   padding-top: 10vw;
 }
 
 #opening-game-conclusion .robin-hod {
-  height: 65vh;
+  height: 60vh;
   right: -15vw;
 }
 
