@@ -343,11 +343,11 @@ body, #main {
   position: fixed;
   z-index: 2;
   /* top: 31vh; */
-  width: 93vw;
+  width: 89vw;
   height: 24vh;
-  margin-top: 1vw;
+  margin-top: 1vh;
   left: -8vw;
-  padding: 2vh 4vw;
+  padding: 2vh 6vw;
   background-image: url(assets/media/3הערכת\ מצב/bubble_arrowhead_big.svg);
 }
 
