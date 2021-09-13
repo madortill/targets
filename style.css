@@ -48,7 +48,7 @@ body, #main {
 
 .speech-bubble {
   font-family: "nehama";
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: rgb(60, 60, 59);
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -78,9 +78,10 @@ body, #main {
 .content {
   border-radius: 2vw;
   width: 100%;
+  padding: 2vh 4vw;
   background-color: rgba(240, 255, 255, 0.6);
   font-family: "Rubik";
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   margin-top: 5vw;
 }
 
@@ -296,14 +297,15 @@ body, #main {
 
 #about .robin-hod {
   height: 45vh;
-  right: -18vw;
-  bottom: -1vw;
+  right: -17.5vw;
+  bottom: -6vw;
 }
 
 /* lesson-goals */
 #lesson-goals .robin-hod {
   height: 45vh;
   right: -15vw;
+  bottom: -5vw;
 }
 
 #lesson-goals .speech-bubble {
@@ -311,10 +313,10 @@ body, #main {
   z-index: 2;
   bottom: 23.5vw;
   width: 55vw;
-  height: 17vw;
+  height: 16vw;
   left: 0;
-  padding-right: 9vw;
-  padding-left: 4vw;
+  padding-right: 8vw;
+  padding-left: 2vw;
   padding-top: 5vw;
   background-image: url(assets/media/bubble_small.svg);
 }
@@ -340,11 +342,11 @@ body, #main {
 #assessment .speech-bubble {
   position: fixed;
   z-index: 2;
-  top: 30vh;
+  top: 32vh;
   width: 92vw;
-  height: 20vh;
+  height: 25vh;
   left: 0;
-  padding: 4vh 4vw;
+  padding: 2vh 4vw;
   /* padding-top: 10vw; */
   background-image: url(assets/media/3הערכת\ מצב/bubble_arrowhead_big.svg);
 }
@@ -355,31 +357,57 @@ body, #main {
 
 #arrow-head {
   position: fixed;
-  bottom: 0;
-  width: 83vw;
+  bottom: -5vw;
+  width: 79vw;
   right: 0;
   z-index: 2;
 }
 
 .triangle {
-  width: 83vw;
+  width: 80vw;
   position: fixed;
   z-index: 2;
+  /* opacity: 0; */
+}
+
+.click-triangle {
+  width: 16vw;
+  height: 17vw;
+  background-color: transparent;
+  position: fixed;
+  z-index: 3;
 }
 
 #triangle-1 {
-  bottom: 0vh;
-  right: 0vw;
+  bottom: -7vw;
+  right: -1.25vw;
 }
 
 #triangle-2 {
-  bottom: 0vh;
-  right: 0vw;
+  bottom: -5.6vw;
+  right: -0.5vw;
 }
 
 #triangle-3 {
   bottom: 0vh;
   right: 0vw;
+}
+
+#click-triangle-1 {
+  bottom: 60vw;
+  right: 29vw;
+  right: 41vw;
+}
+
+#click-triangle-2 {
+  bottom: 44vw;
+  right: 31vw;
+}
+
+#click-triangle-3 {
+  bottom: 44vw;
+  right: 29vw;
+  right: 52vw;
 }
 
 /*  */
