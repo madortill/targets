@@ -342,12 +342,12 @@ body, #main {
 #assessment .speech-bubble {
   position: fixed;
   z-index: 2;
-  top: 31vh;
-  width: 92vw;
+  /* top: 31vh; */
+  width: 93vw;
   height: 24vh;
-  left: 0;
+  margin-top: 1vw;
+  left: -8vw;
   padding: 2vh 4vw;
-  /* padding-top: 10vw; */
   background-image: url(assets/media/3הערכת\ מצב/bubble_arrowhead_big.svg);
 }
 
