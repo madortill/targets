@@ -211,7 +211,7 @@ body, #main {
 
 /* for the container of jquery animation */
 #opening-game .container {
-  height: 45vh;
+  height: 50vh;
 }
 
 #arrows-numbers {
@@ -367,7 +367,7 @@ body, #main {
   width: 80vw;
   position: fixed;
   z-index: 2;
-  /* opacity: 0; */
+  opacity: 0;
 }
 
 .click-triangle {
@@ -379,35 +379,35 @@ body, #main {
 }
 
 #triangle-1 {
-  bottom: -7vw;
-  right: -1.25vw;
+  bottom: -8vw;
+  right: -0.8vw;
 }
 
 #triangle-2 {
-  bottom: -5.6vw;
+  bottom: -7.6vw;
   right: -0.5vw;
 }
 
 #triangle-3 {
-  bottom: 0vh;
-  right: 0vw;
+  bottom: -7.6vw;
+  right: -1vw;
 }
 
 #click-triangle-1 {
-  bottom: 60vw;
+  bottom: 50vw;
   right: 29vw;
-  right: 41vw;
+  right: 39vw;
 }
 
 #click-triangle-2 {
-  bottom: 44vw;
-  right: 31vw;
+  bottom: 34vw;
+  right: 29vw;
 }
 
 #click-triangle-3 {
-  bottom: 44vw;
+  bottom: 34vw;
   right: 29vw;
-  right: 52vw;
+  right: 49vw;
 }
 
 /*  */
