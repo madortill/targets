@@ -81,7 +81,7 @@ body, #main {
   padding: 2vh 4vw;
   background-color: rgba(240, 255, 255, 0.6);
   font-family: "Rubik";
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   margin-top: 5vw;
 }
 
@@ -322,7 +322,7 @@ body, #main {
 }
 
 #lesson-goals .content-flex, #assessment .content-flex {
-  top: 5vh;
+  top: 4vh;
 }
 
 #lesson-goals .title {
@@ -342,9 +342,9 @@ body, #main {
 #assessment .speech-bubble {
   position: fixed;
   z-index: 2;
-  top: 32vh;
+  top: 31vh;
   width: 92vw;
-  height: 25vh;
+  height: 24vh;
   left: 0;
   padding: 2vh 4vw;
   /* padding-top: 10vw; */
@@ -357,7 +357,7 @@ body, #main {
 
 #arrow-head {
   position: fixed;
-  bottom: -5vw;
+  bottom: -7vw;
   width: 79vw;
   right: 0;
   z-index: 2;
