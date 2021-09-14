@@ -64,17 +64,6 @@ body, #main {
   flex-wrap: wrap;
 }
 
-.content, .title {
-  backdrop-filter: blur(3px);
-  color: rgb(60, 60, 59);
-  padding: 1.5vh 4vw;
-}
-
-.title {
-  font-family: "Rubik-Bold";
-  font-size: 1.5rem;
-}
-
 .content {
   border-radius: 2vw;
   width: 100%;
@@ -85,6 +74,28 @@ body, #main {
   margin-top: 5vw;
 }
 
+.content, .title {
+  backdrop-filter: blur(3px);
+  color: rgb(60, 60, 59);
+}
+
+.title {
+  font-family: "Rubik-Bold";
+  font-size: 1.5rem;
+  padding: 1.5vh 4vw;
+}
+
+.bold {
+  font-family: "Rubik-Bold";
+}
+
+.second-title {
+  font-size: 1.3rem;
+}
+
+.third-title {
+  font-size: 1.1rem;
+}
 
 /* controls */
 #controls {
@@ -333,16 +344,10 @@ body, #main {
   height: 60vh;
 }
 
-#lesson-goals .content div{
-  font-family: "Rubik-Bold";
-  font-size: 1.1rem;
-}
-
 /* assesment */
 #assessment .speech-bubble {
   position: fixed;
   z-index: 2;
-  /* top: 31vh; */
   width: 89vw;
   height: 24vh;
   margin-top: 1vh;
@@ -408,6 +413,36 @@ body, #main {
   bottom: 34vw;
   right: 29vw;
   right: 49vw;
+}
+
+/* importance */
+
+#importance .speech-bubble {
+  position: relative;
+  z-index: 2;
+  width: 58vw;
+  height: 4vh;
+  margin: auto;
+  margin-top: 1vh;
+  padding: 10vh 0vw;
+  padding-right: 27vw;
+  background-image: url(assets/media/bubble_robin.svg);
+}
+
+#importance .title {
+  background-color: rgba(252, 158, 81, 0.6);
+}
+
+.flex-bullet {
+  display: flex;
+  width: 75vw;
+  align-items: flex-start;
+  margin-top: 1vh;
+}
+
+.little-bullet {
+  width: 7vw;
+  margin-left: 2vw;
 }
 
 /*  */
