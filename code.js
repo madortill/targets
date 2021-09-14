@@ -2,69 +2,81 @@ var nPage = 0;
 // var nFunction = 0;
 
 var ArrPages = [
+  // opening
+  // {
+  //   // opening game- page 0
+  //   divName: ["opening-game", "general-opening-game"], // the last div contains the speech bubble
+  //   functions: ["openingGame()"], // array of functions that are needed to the page. If the functions contain the word "pop", it will happen only once and will be popped out of the array afterwards
+  //   moveButtons: false, // does this page contains back and next buttons - true/false
+  //   lessonMap: false, // does this page contains lesson map - true/false
+  //   robinText: 'היי! אני הוא רובין הו"ד!<br><br>בבקשה תגררו את החץ הכחול אל החלקה הצהובה' // contains Robin's text (unless it is empty)
+  // },
+  // {
+  //   // opening game question- page 1
+  //   divName: ["opening-game-question", "general-opening-game"],
+  //   functions: ['pop_buttons($("#prev"), -1)', 'pop_buttons($("#next"), +1)', 'clearIntervalExplanation()', 'pop_openingGameQuestion()'],
+  //   moveButtons: true,
+  //   lessonMap: false,
+  //   robinText: 'כל הכבוד! עזרתם לי לפתור את החידה!'
+  // },
+  // {
+  //   // opening game explanation- page 2
+  //   divName: ["opening-game-explanation", "general-opening-game"],
+  //   functions: ['openingGameExplanation()', "setIntervalExplanation = setInterval(openingGameExplanation, 2600);"],
+  //   moveButtons: true,
+  //   lessonMap: false,
+  //   robinText: 'למעשה על ידי גרירה של החץ האדום למיקום המיועד הצלחתם להפוך את התרגיל המתמטי הנתון לתרגיל הגיוני'
+  // },
+  // {
+  //   // opening game conclusion- page 3
+  //   divName: ["opening-game-conclusion"],
+  //   functions: ['clearIntervalExplanation()'],
+  //   moveButtons: true,
+  //   lessonMap: false,
+  //   robinText: "אילו הייתם מבינים מה <span>המטרה</span> של הפעולה, הייתם נהנים יותר במהלך פתרון החידה, ולא הייתם מרגישים שאתם מבזבזים את הזמן.<br><br> כך בדיוק נבנה גם שיעור- אם אין לו מטרות הוא מאבד מהיעילות שלו."
+  // },
+  // {
+  //   // opening game question- page 4
+  //   divName: ["opening"],
+  //   functions: ['pop_opening()', 'pop_buttons($("#play"), 2)', 'pop_buttons($("#about-button"), 1)'],
+  //   moveButtons: false,
+  //   lessonMap: false,
+  //   robinText: "" 
+  // },
+  // {
+  //   // about- page 5
+  //   divName: ["about"],
+  //   functions: [],
+  //   moveButtons: true,
+  //   lessonMap: false,
+  //   robinText: '<img id="till" class="logo" src="assets/media/symbols/tilblack.svg"><div><b>אודות</b></div><b>רמ"ד טיל-</b> רס"ן מיגל לוויתן<br><b>רת"ח מו"פ וחדשנות בלמידה-</b> סמ"ר גל גנסין<br><b>עיצוב גרפי-</b> סמל מייה ליבנה<br><b>תכנות-</b> רב"ט טל סרוסי<br><b>מומחית תוכן-</b> סג"מ שירה רוט<br>גרסה</b>- אוקטובר 2021<b></div>'
+  // },
+  // {
+  //   // lesson's goals- page 6
+  //   divName: ["lesson-goals"],
+  //   functions: ['goTwoBack(-2)', 'pop_goTwoBack_opening()'],
+  //   moveButtons: true,
+  //   lessonMap: true,
+  //   robinText: "וכמו בכל שיעור, נתחיל עם הצגת המטרות!"
+  // },
+  // // assessment
+  // {
+  //   // assessment- page 7
+  //   divName: ["assessment"],
+  //   functions: ['goTwoBack(-1)', 'pop_changeTriangle()'], 
+  //   moveButtons: true, 
+  //   lessonMap: true, 
+  //   robinText: 'כיאה ללוחם אמיץ כמוני, אני משתמש במשולש לח"מ- לומד, חומר ומלמד.<br>לחצו על כל אחד מהמשולשים שמרכיבים את החץ כדי לקרוא עליו (לא תוכלו לעבור עמוד לפני שתלמדו על כולם).'
+  // },
+  // goals
   {
-    // opening game- page 0
-    divName: ["opening-game", "general-opening-game"], // the last div contains the speech bubble
-    functions: ["openingGame()"], // array of functions that are needed to the page. If the functions contain the word "pop", it will happen only once and will be popped out of the array afterwards
-    moveButtons: false, // does this page contains back and next buttons - true/false
-    lessonMap: false, // does this page contains lesson map - true/false
-    robinText: 'היי! אני הוא רובין הו"ד!<br><br>בבקשה תגררו את החץ הכחול אל החלקה הצהובה' // contains Robin's text (unless it is empty)
-  },
-  {
-    // opening game question- page 1
-    divName: ["opening-game-question", "general-opening-game"],
-    functions: ['pop_buttons($("#prev"), -1)', 'pop_buttons($("#next"), +1)', 'clearIntervalExplanation()', 'pop_openingGameQuestion()'],
-    moveButtons: true,
-    lessonMap: false,
-    robinText: 'כל הכבוד! עזרתם לי לפתור את החידה!'
-  },
-  {
-    // opening game explanation- page 2
-    divName: ["opening-game-explanation", "general-opening-game"],
-    functions: ['openingGameExplanation()', "setIntervalExplanation = setInterval(openingGameExplanation, 2600);"],
-    moveButtons: true,
-    lessonMap: false,
-    robinText: 'למעשה על ידי גרירה של החץ האדום למיקום המיועד הצלחתם להפוך את התרגיל המתמטי הנתון לתרגיל הגיוני'
-  },
-  {
-    // opening game conclusion- page 3
-    divName: ["opening-game-conclusion"],
-    functions: ['clearIntervalExplanation()'],
-    moveButtons: true,
-    lessonMap: false,
-    robinText: "אילו הייתם מבינים מה <span>המטרה</span> של הפעולה, הייתם נהנים יותר במהלך פתרון החידה, ולא הייתם מרגישים שאתם מבזבזים את הזמן.<br><br> כך בדיוק נבנה גם שיעור- אם אין לו מטרות הוא מאבד מהיעילות שלו."
-  },
-  {
-    // opening game question- page 4
-    divName: ["opening"],
-    functions: ['pop_opening()', 'pop_buttons($("#play"), 2)', 'pop_buttons($("#about-button"), 1)'],
-    moveButtons: false,
-    lessonMap: false,
-    robinText: "" 
-  },
-  {
-    // about- page 5
-    divName: ["about"],
-    functions: [],
-    moveButtons: true,
-    lessonMap: false,
-    robinText: '<img id="till" class="logo" src="assets/media/symbols/tilblack.svg"><div><b>אודות</b></div><b>רמ"ד טיל-</b> רס"ן מיגל לוויתן<br><b>רת"ח מו"פ וחדשנות בלמידה-</b> סמ"ר גל גנסין<br><b>עיצוב גרפי-</b> סמל מייה ליבנה<br><b>תכנות-</b> רב"ט טל סרוסי<br><b>מומחית תוכן-</b> סג"מ שירה רוט<br>גרסה</b>- אוקטובר 2021<b></div>'
-  },
-  {
-    // lesson's goals- page 6
-    divName: ["lesson-goals"],
-    functions: ['goTwoBack(-2)', 'pop_goTwoBack_opening()'],
-    moveButtons: true,
-    lessonMap: true,
-    robinText: "וכמו בכל שיעור, נתחיל עם הצגת המטרות!"
-  },
-  {
-    // assessment- page 7
-    divName: ["assessment"],
-    functions: ['goTwoBack(-1)', 'pop_changeTriangle()'], 
+
+    // importance of goals- page 8
+    divName: ["importance"],
+    functions: [""], 
     moveButtons: true, 
     lessonMap: true, 
-    robinText: 'כיאה ללוחם אמיץ כמוני, אני משתמש במשולש לח"מ- לומד, חומר ומלמד.<br>לחצו על כל אחד מהמשולשים שמרכיבים את החץ כדי לקרוא עליו (לא תוכלו לעבור עמוד לפני שתלמדו על כולם).'
+    robinText: 'עכשיו אפשר לכתוב מטרות!<br>אבל למה צריך אותן?'
   },
   {
     // opening game- page ?
