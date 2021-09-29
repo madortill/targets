@@ -2,7 +2,7 @@ var nPage = 0;
 // var nFunction = 0;
 
 var ArrPages = [
-  // opening
+  // // opening
   // {
   //   // opening game- page 0
   //   divName: ["opening-game", "general-opening-game"], // the last div contains the speech bubble
@@ -68,15 +68,30 @@ var ArrPages = [
   //   lessonMap: true, 
   //   robinText: 'כיאה ללוחם אמיץ כמוני, אני משתמש במשולש לח"מ- לומד, חומר ומלמד.<br>לחצו על כל אחד מהמשולשים שמרכיבים את החץ כדי לקרוא עליו (לא תוכלו לעבור עמוד לפני שתלמדו על כולם).'
   // },
-  // goals
+  // // goals
+  // {
+  //   // importance of goals- page 8
+  //   divName: ["importance"],
+  //   functions: [""], 
+  //   moveButtons: true, 
+  //   lessonMap: true, 
+  //   robinText: 'עכשיו אפשר לכתוב מטרות!<br>אבל למה צריך אותן?'
+  // },
   {
-
-    // importance of goals- page 8
-    divName: ["importance"],
+    // types of goals- page 9
+    divName: ["types"],
     functions: [""], 
     moveButtons: true, 
     lessonMap: true, 
-    robinText: 'עכשיו אפשר לכתוב מטרות!<br>אבל למה צריך אותן?'
+    robinText: ''
+  },
+  {
+    // types of goals- page 10
+    divName: ["wording-rules"],
+    functions: [""], 
+    moveButtons: true, 
+    lessonMap: true, 
+    robinText: ''
   },
   {
     // opening game- page ?
