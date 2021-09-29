@@ -454,7 +454,7 @@ body, #main {
   position: relative;
   margin: auto;
   width: 95vw;
-  top: 8vh;
+  top: 7vh;
 }
 
 #types .first-row {
@@ -462,11 +462,11 @@ body, #main {
 }
 
 #types .first-column {
-  width: 10%;
+  width: 0%;
 }
 
 #types .second-column {
-  width: 30%;
+  width: 40%;
 }
 
 #types .third-column {
