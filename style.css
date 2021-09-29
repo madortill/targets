@@ -429,6 +429,7 @@ body, #main {
   margin: auto;
   margin-top: 1vh;
   padding: 6vh 0vw;
+  padding-bottom: 8vh;
   padding-right: 27vw;
   background-image: url(assets/media/bubble_robin.svg);
 }
