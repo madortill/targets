@@ -550,8 +550,14 @@ body, #main {
   width: 50vw;
   background-color: white;
   border-radius: 2vw;
-  height: 4vh;
+  padding: 1vw;
   text-align: center;
+}
+
+#arrows-container{
+  width: 100vw;
+  position: fixed;
+  bottom: 0;
 }
 
 
