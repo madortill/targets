@@ -118,13 +118,13 @@ body, #main {
   z-index: 1;
 }
 
- #controls .control-button {
+.control-button {
    width: 10vw;
    margin-right: 1vw;
    margin-left: 1vw;
  }
- 
- #prev {
+
+ .prev {
   transform: rotate(180deg);
  }
 
@@ -428,8 +428,7 @@ body, #main {
   height: 4vh;
   margin: auto;
   margin-top: 1vh;
-  padding: 6vh 0vw;
-  padding-bottom: 8vh;
+  padding: 7vh 0vw;
   padding-right: 27vw;
   background-image: url(assets/media/bubble_robin.svg);
 }
@@ -481,7 +480,7 @@ body, #main {
 #types td {
   background-color: white;
   padding: 3vw 3vh;
-  border-radius: 1vw 1vh;
+  border-radius: 8px;
 }
 
 #types .first-row.first-column {
@@ -501,6 +500,60 @@ body, #main {
 #wording-rules .title {
   background-color: rgba(81, 121, 252, 0.6);
 }
+
+/* bow-match-exer */
+
+#bow-match-exer .speech-bubble {
+  position: relative;
+  z-index: 2;
+  width: 58vw;
+  height: 27vw;
+  margin: auto;
+  margin-top: 2vw;
+  margin-bottom: 2vw;
+  padding: 4vw 2vw;
+  padding-right: 33vw;
+  background-image: url(assets/media/bubble_robin_big.svg);
+}
+
+#bows-container {
+  background-color: rgba(240, 255, 255, 0.6);
+  backdrop-filter: blur(3px);
+  width: 100vw;
+  height: 35vh;
+}
+
+.bow {
+  display: none;
+  position: relative;
+  margin: auto;
+  height: 77%;
+  top: 1vh;
+}
+
+#bow-1 {
+  display: block;
+}
+
+#bow-controls {
+  margin: auto;
+  position: relative;
+  height: 20%;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 1vh;
+}
+
+#bow-title {
+  width: 50vw;
+  background-color: white;
+  border-radius: 2vw;
+  height: 4vh;
+  text-align: center;
+}
+
 
 /*  */
 
