@@ -529,10 +529,25 @@ body, #main {
   margin: auto;
   height: 77%;
   top: 1vh;
+  opacity: 0;
 }
 
 #bow-1 {
   display: block;
+  opacity: 1;
+}
+
+#bow-drop {
+  position: fixed;
+  display: block;
+  width: 90vw;
+  background-color: rgb(138, 238, 245);
+  height: 5vh;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 12vh;
+  z-index: 1;
 }
 
 #bow-controls {
@@ -558,6 +573,13 @@ body, #main {
   width: 100vw;
   position: fixed;
   bottom: 0;
+}
+
+.arrow {
+  display: block;
+  position: relative;
+  width: 90vw;
+  margin: auto;
 }
 
 
