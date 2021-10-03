@@ -16,10 +16,10 @@ function openingGame() {
       drop: function(e,ui) {
         ui.draggable.draggable("disable");
         // animation to put the arrow in place
-        ui.draggable.animate({top: "45vw", left: "-67vw"}, 200, function() {
+        ui.draggable.animate({top: "10.1rem", left: "-66vw"}, 200, function() {
           // in the end of the animation moving to the next page
           setTimeout(function(){
-            $("#opening-game .drag-arrow").css({"left": "-2vw","top": "36.3vw"});
+            $("#opening-game .drag-arrow").css({"left": "-2vw","top": "8.3rem"});
             $("#opening-game").css("display", "none");
             nPage++;
             movePage();
@@ -57,7 +57,7 @@ function openingGame() {
   // animation of arrow moving to explain the math exer
   function openingGameExplanation() {
     // arrow
-    $("#opening-game-explanation .drag-arrow").delay(300).animate({top: "45vw", left: "-67vw"}, 1000).delay(300).animate({top: "36.3vw", left: "-2vw"}, 1000);
+    $("#opening-game-explanation .drag-arrow").delay(300).animate({top: "10.1rem", left: "-66vw"}, 1000).delay(300).animate({top: "8.3rem", left: "-2vw"}, 1000);
     // numbers
     $("#arrows-numbers").delay(300).fadeToggle(500, function() {
       $("#arrows-numbers").text("1+0 = 1");
@@ -79,7 +79,7 @@ function openingGame() {
 // this function changes the amount of pages the user goes back in accordance with parameter "page"
 function goTwoBack(page) {
     $("#prev").off("click");
-    pop_buttons($("#prev"), page);
+    pop_buttons($("#prev"), page, "add");
 }
 
 // in the first time the user reaches the opening page, the amount of pages that "prev" goes back has never changed (1)
