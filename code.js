@@ -104,7 +104,7 @@ var ArrPages = [
   {
     // opening game- page ?
     divName: ["robin-trial"],
-    functions: ['goTwoBack(-1)'],
+    functions: ["pop_removeExer(-1)"],
     moveButtons: true, 
     lessonMap: true, 
     robinText: ""
@@ -218,4 +218,13 @@ changeTopic = newTopic => {
       $(`#topic-${currTopic} img`).attr("src", "assets/media/map_select.svg");
     }
   }
+}
+
+// function that removes exercises from the pages array after they are finished
+pop_removeExer = (exerPage) => {
+  ArrPages.splice(nPage + exerPage , 1);
+  if( exerPage < 0) {
+    nPage--;
+  }
+  ArrPages[nPage + exerPage].functions.pop();
 }
