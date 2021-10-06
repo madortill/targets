@@ -344,7 +344,7 @@ body, #main {
   background-color: rgba(240, 255, 255, 0.6);
 }
 
-#lesson-goals .content, #assessment .content, #wording-rules .content, #order-rules .content, #goals-example .content, #dropdown-exer .content {
+#lesson-goals .content, #assessment .content, #wording-rules .content, #order-rules .content, #goals-example .content {
   height: 60vh;
 }
 
@@ -657,25 +657,7 @@ body, #main {
   bottom: 17vw;
 }
 
-/*  */
-
-#robin-trial .container {
-  align-items: center;
-  justify-content: center;
-  display: flex;
-}
-
-#bubble-robin-big {
-  bottom: 0px;
-  position: fixed;
-  z-index: 0;
-  height: 59vw;
-  right: -5vw;
-}
-
-
-
-
+/* dropdown */
 
 .ui-button:active .ui-icon, .ui-button:hover .ui-icon, .ui-button:focus .ui-icon, .ui-icon, .ui-button .ui-icon {
   background-image: none;
@@ -688,7 +670,9 @@ body, #main {
 .ui-selectmenu-button.ui-button {
   text-align: right;
   white-space: nowrap;
-  width: 5rem;
+  width: 7rem;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
 }
 
 .ui-corner-all {
@@ -708,28 +692,61 @@ body, #main {
   border-top-left-radius: 3vw;
 }
 
-.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus, .ui-button:hover, .ui-button:focus {
-  border: 0.15rem solid #cccccc;
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus, .ui-button:hover, .ui-button:focus, .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+  border: 0.15rem solid white;
+  background: white;
 }
 
-.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus, .ui-button:hover, .ui-button:focus {
-  border: 0.15rem solid #f6f6f6;
-  background: #f6f6f6;
+.ui-widget {
+  font-family: "Rubik", Arial, Helvetica, sans-serif;
+  font-size: 1em;
 }
 
-.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
-  border: 0.15rem solid #f6f6f6;
-  background: #f6f6f6;
+*:focus {
+  -webkit-tap-highlight-color: transparent;
 }
 
-.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
-  border: 0.15rem solid #f6f6f6;
-  background: #f6f6f6;
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
+  background: white;
+  color: white;
 }
 
-.ui-focus, .ui-btn:focus, .ui-slider-handle:focus{
-  outline: none;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
+  border: 0.15rem solid transparent;
+  background: rgb(218, 218, 218);
+  color: white;
 }
+
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited, a.ui-button, a:link.ui-button, a:visited.ui-button, .ui-button {
+  color: #454545;
+}
+
+.ui-widget.ui-widget-content {
+  border: none;
+}
+
+#check {
+  display: none;
+  height: 10vw;
+}
+
+.ui-menu .ui-menu-item-wrapper {
+  position: relative;
+  padding: 0.2em;
+}
+/*  */
+
+#robin-trial .container {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+#bubble-robin-big {
+  bottom: 0px;
+  position: fixed;
+  z-index: 0;
+  height: 59vw;
+  right: -5vw;
+}
+
