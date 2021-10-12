@@ -38,12 +38,13 @@ const table_text = [
     }
 ];
 
-let colored_parts = 0;
+let colored_parts = 1;
 
 
 pop_changeTable = () => {
     // disable moving page
     $(".control-button").css("pointer-events", "none");
+    $(".topic").css("pointer-events", "none");
     $(".table-button").on("click", function() {
       // the button had not been selected
       if (!$(event.target).hasClass("selected")) {
@@ -56,6 +57,7 @@ pop_changeTable = () => {
       // if all the three triangles are colored
         if(colored_parts === Object.keys(table_text).length) {
           $(".control-button").css("pointer-events", "auto");
+          $(".topic").css("pointer-events", "auto");
           // add to the num of the triangles so it won't enter the condition again
           colored_parts++;
         }
