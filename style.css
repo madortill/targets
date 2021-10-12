@@ -54,6 +54,19 @@ body, #main {
   background-size: 100% 100%;
 }
 
+.exer-speech-bubble {
+  position: relative;
+  z-index: 2;
+  width: 58vw;
+  height: 27vw;
+  margin: auto;
+  margin-top: 2vw;
+  margin-bottom: 2vw;
+  padding: 4vw 2vw;
+  padding-right: 33vw;
+  background-image: url(assets/media/bubble_robin_big.svg);
+}
+
 .content-flex {
   display: flex;
   position: relative;
@@ -64,6 +77,10 @@ body, #main {
   flex-wrap: wrap;
 }
 
+.content-flex-height {
+  top: 4vh;
+}
+
 .content {
   border-radius: 2vw;
   width: 100%;
@@ -71,7 +88,7 @@ body, #main {
   background-color: rgba(240, 255, 255, 0.6);
   font-family: "Rubik";
   font-size: 1.15rem;
-  margin-top: 5vw;
+  margin-top: 2vh;
 }
 
 .content, .title {
@@ -97,8 +114,38 @@ body, #main {
   font-size: 1.1rem;
 }
 
-.table {
-  display: grid;
+.scape {
+  height: 1vh;
+  width: 100%;
+}
+
+.text-align {
+  text-align: center;
+}
+
+/* tables */
+
+table {
+  position: relative;
+  margin: auto;
+  width: 95vw;
+}
+
+td {
+  background-color: white;
+  border-radius: 8px;
+}
+
+.first-row {
+  text-align: center;
+  background-color: rgb(253, 246, 142);
+}
+
+.first-column {
+  background-color: rgb(138, 238, 245);
+}
+.first-row.first-column {
+  background-color: transparent;
 }
 
 /* controls */
@@ -242,7 +289,7 @@ body, #main {
 }
 
 /* pages 3*/
-#opening-game-conclusion .speech-bubble,  #about .speech-bubble {
+#opening-game-conclusion .speech-bubble,  #about .speech-bubble, #lesson-plan-opening .speech-bubble {
   position: fixed;
   z-index: 2;
   top: 0;
@@ -300,17 +347,20 @@ body, #main {
   width: 10vw;
 }
 
-#about .speech-bubble div {
+#about .speech-bubble div, #lesson-plan-opening .speech-bubble div{
   width: 100%;
   text-align: center;
+}
+
+#about .speech-bubble div {
   font-size: 15vw;
 }
 
-#about .speech-bubble {
+#about .speech-bubble, #lesson-plan-opening .speech-bubble{
   height: 48vmax;
 }
 
-#about .robin-hod {
+#about .robin-hod, #lesson-plan-opening .robin-hod {
   height: 45vh;
   right: -17.5vw;
   bottom: -6vw;
@@ -334,10 +384,6 @@ body, #main {
   padding-left: 2vw;
   padding-top: 5vw;
   background-image: url(assets/media/bubble_small.svg);
-}
-
-#lesson-goals .content-flex, #assessment .content-flex, #types .content-flex, #wording-rules .content-flex, #order-rules .content-flex, #goals-example .content-flex {
-  top: 4vh;
 }
 
 #lesson-goals .title, #goals-example .title {
@@ -451,14 +497,11 @@ body, #main {
 
 /* types */
 #types table {
-  position: relative;
-  margin: auto;
-  width: 95vw;
   top: 7vh;
 }
 
-#types .first-row {
-  text-align: center;
+#types td {
+    padding: 3vw 3vh;
 }
 
 #types .first-column {
@@ -477,23 +520,11 @@ body, #main {
   background-color: rgba(252, 81, 252, 0.6);
 }
 
-#types td {
+/* #types td {
   background-color: white;
   padding: 3vw 3vh;
   border-radius: 8px;
-}
-
-#types .first-row.first-column {
-  background-color: transparent;
-}
-
-#types .first-row.second-column, #types .first-row.third-column {
-  background-color: rgb(253, 246, 142);
-}
-
-#types .second-row.first-column, #types .third-row.first-column {
-  background-color: rgb(138, 238, 245);
-}
+} */
 
 /* wording-rules */
 
@@ -502,19 +533,6 @@ body, #main {
 }
 
 /* bow-exer */
-
-#bow-exer .speech-bubble, #quiver-exer .speech-bubble, #dropdown-exer .speech-bubble{
-  position: relative;
-  z-index: 2;
-  width: 58vw;
-  height: 27vw;
-  margin: auto;
-  margin-top: 2vw;
-  margin-bottom: 2vw;
-  padding: 4vw 2vw;
-  padding-right: 33vw;
-  background-image: url(assets/media/bubble_robin_big.svg);
-}
 
 #bows-container {
   background-color: rgba(240, 255, 255, 0.6);
@@ -556,7 +574,7 @@ body, #main {
   z-index: 1;
 }
 
-#bow-controls, #quiver-controls{
+.exer-controls {
   margin: auto;
   position: relative;
   height: 20%;
@@ -578,7 +596,7 @@ body, #main {
   text-align: center;
 }
 
-#arrows-container, #quiver-container {
+#arrows-container, #quiver-container, #lesson-container {
   width: 100vw;
   position: fixed;
 }
@@ -590,7 +608,7 @@ body, #main {
 .arrow {
   display: block;
   position: relative;
-  width: 90vw;
+  width: 80vw;
   margin: auto;
 }
 
@@ -610,7 +628,6 @@ body, #main {
   width: 100vw;
   height: 55vh;
   position: relative;
-  background-color: rgba(226, 165, 231, 0.473);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -626,7 +643,7 @@ body, #main {
   height: 7vh;
 }
 
-#quiver-controls {
+#quiver-controls, #lesson-controls {
   width: 50%;
 }
 
@@ -657,7 +674,7 @@ body, #main {
   bottom: 17vw;
 }
 
-/* dropdown */
+/* dropdown exer */
 
 .ui-button:active .ui-icon, .ui-button:hover .ui-icon, .ui-button:focus .ui-icon, .ui-icon, .ui-button .ui-icon {
   background-image: none;
@@ -734,6 +751,145 @@ body, #main {
   position: relative;
   padding: 0.2em;
 }
+
+/* lesson's parts roles exer */
+
+.lesson-flex {
+  width: 100vw;
+  height: 20vh;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: flex-start; */
+  align-content: space-evenly;
+  background-repeat: no-repeat;
+  margin-bottom: 0.5vh;
+}
+
+#lesson-flex-1 {
+  background-image: url("assets/media/9תרגול חלקי שיעור/matara_open.svg");
+}
+
+#lesson-flex-2 {
+  background-image: url("assets/media/9תרגול חלקי שיעור/matara_body.svg");
+}
+
+#lesson-flex-3 {
+  background-image: url("assets/media/9תרגול חלקי שיעור/matara_sum.svg");
+}
+
+#lesson-exer .arrow {
+  display: none;
+  right: 0;
+  position: fixed;
+  bottom: 1vw;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+}
+
+#lesson-exer #lesson-arrow-1 {
+  display: block;
+}
+
+.lesson-drop {
+  display: block;
+  width: 100vw;
+  background-color: transparent;
+  height: 17vh;
+  position: relative;
+  left: 0vw;
+}
+
+#lesson-container {
+  bottom: 13vw;
+}
+
+/* table example */
+
+#table-example table {
+  top: 7vh;
+}
+
+#table-example .column {
+  width: 0%;
+}
+
+#table-example .title, #table-explaining .title, #lesson-plan-example .title {
+  background-color: rgb(138, 238, 245, 0.6);
+}
+
+#table-example td {
+  padding: 3vw 2vh;
+}
+
+/* table exercise */
+
+table {
+  width: 85vw;
+  margin-top: 2vh;
+}
+
+#table-controls {
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  width: 85vw;
+  justify-content: space-between;
+  margin:auto;
+}
+
+.table-button {
+  background-color: rgb(138, 238, 245);
+  border-radius: 8px;
+  color: rgb(4, 4, 8); 
+  padding: 1vh 4vw;
+  margin-top: 6vh;
+}
+
+#table-explaining .selected {
+  background-color: rgb(4, 4, 8);
+  color: rgb(138, 238, 245);
+}
+
+#table-explaining .first-row  {
+  background-color: rgb(222, 224, 224);
+}
+
+#table-explaining td {
+  padding: 1vh 3vw;
+}
+
+#time {
+  height: 12vh;
+}
+
+#content {
+  height: 20vh;
+}
+
+
+/* lesson-plan-example */
+
+.scroll {
+  height: 55vh;
+  overflow-y: scroll;
+  border-radius: 8px;
+  width: 85vw;
+  margin: auto;
+  position: relative;
+  margin-top: 6vh;
+}
+
+.scroll table {
+  margin-top: 0;
+}
+
+#lesson-plan-example td {
+  padding: 1vh 3vw;
+}
+
 /*  */
 
 #robin-trial .container {
