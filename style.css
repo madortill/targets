@@ -367,13 +367,13 @@ td {
 }
 
 /* lesson-goals */
-#lesson-goals .robin-hod, #order-rules .robin-hod, #goals-example .robin-hod {
+#lesson-goals .robin-hod, #order-rules .robin-hod, #goals-example .robin-hod, #running-page .robin-hod{
   height: 45vh;
   right: -15vw;
   bottom: -5vw;
 }
 
-#lesson-goals .speech-bubble, #order-rules .speech-bubble {
+#lesson-goals .speech-bubble, #order-rules .speech-bubble,  #running-page .speech-bubble {
   position: fixed;
   z-index: 2;
   bottom: 23.5vw;
@@ -640,7 +640,7 @@ td {
   display: block;
   width: 90vw;
   background-color: transparent;
-  height: 7vh;
+  height: 9vh;
 }
 
 #quiver-controls, #lesson-controls {
@@ -870,7 +870,7 @@ table {
 }
 
 
-/* lesson-plan-example */
+/* lesson plan example */
 
 .scroll {
   height: 55vh;
@@ -889,6 +889,13 @@ table {
 #lesson-plan-example td {
   padding: 1vh 3vw;
 }
+
+/* running page */
+
+#running-page .title{
+  background-color: rgba(252, 81, 146, 0.6);
+}
+
 
 /*  */
 
