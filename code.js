@@ -1,5 +1,6 @@
 var nPage = 0;
 var currTopic = null;
+var exerType;
 
 var ArrPages = [
   // opening
@@ -126,7 +127,7 @@ var ArrPages = [
     robinText: ""
   },
   {
-    // example for writing goals- page 15
+    // dropdowns exercise- page 15
     divName: ["dropdown-exer"],
     functions: ["dropDownInit()"],
     moveButtons: true,
@@ -134,13 +135,53 @@ var ArrPages = [
     robinText: "עזרו לי להשלים את כתיבת המטרות! בחרו את המילים המתאימות בכל מקום חסר!"
   },
   {
+    // lesson plan opening- page 16
+    divName: ["lesson-plan-opening"],
+    functions: ["pop_removeExer(-1)"],
+    moveButtons: true,
+    lessonMap: false,
+    robinText: "למדנו כיצד כותבים מטרות, ועכשיו אפשר לכתוב מערך שיעור!"
+  },
+  {
+    // sorting lesson's parts roles exercise- page 17
+    divName: ["lesson-exer"],
+    functions: ['pop_changeCarousel($("#prev-lesson"), "lesson", -1)', 'pop_changeCarousel($("#next-lesson"), "lesson", 1)'],
+    moveButtons: false,
+    lessonMap: false,
+    robinText: "את השיעור נהוג לחלק לשלושה חלקים (פתיחה, גוף וסיכום)- התאימו בין חלקי השיעור (המטרות) לתפקידיהם (החיצים) באמצעות גרירה"
+  },
+  {
+    // table example- page 18
+    divName: ["table-example"],
+    functions: ['pop_buttons($("#topic-3"), ArrPages.findIndex(x => x.divName.includes("table-example")), "equal")', 'changeTopic(3)', "pop_removeExer(-1)"], 
+    moveButtons: true, 
+    lessonMap: true, 
+    robinText: ''
+  },
+  {
+    // table example- page 19
+    divName: ["table-explaining"],
+    functions: ["pop_changeTable()"], 
+    moveButtons: true, 
+    lessonMap: true, 
+    robinText: ''
+  },
+  {
+    // lesson plan table example- page 20
+    divName: ["lesson-plan-example"],
+    functions: [""], 
+    moveButtons: true, 
+    lessonMap: true, 
+    robinText: ''
+  },
+  {
     // opening game- page ?
     divName: ["robin-trial"],
-    functions: ["pop_removeExer(-1)"],
+    functions: [""],
     moveButtons: true, 
     lessonMap: true, 
     robinText: ""
-  },
+  }
 ];
 
 $(function() {
@@ -261,4 +302,142 @@ pop_removeExer = (exerPage) => {
   }
   // so the function won't be called twice
   ArrPages[nPage + exerPage].functions.pop();
+}
+
+// function that adds events listeners to bows exrcise carousel's prev and next buttons
+pop_changeCarousel = (button, exerTypeParam, indexNum) => {
+  // function that changes the carrousel of the bows exercise
+  button.on("click", () => {
+    // exerType === "bow"/"quiver"/"lesson"
+    changeCarousel(indexNum, true);
+  });
+  exerType = exerTypeParam;
+  Drag();
+}
+
+// exercise's functions
+
+// generic function that disappears and reveals items in carousels
+changeCarousel = (indexNum, disappear) => {
+  // represents the item that appear and disappear in the html (bow/arrow)
+  let item;
+  let itemsNum;
+  if (exerType === "bow") {
+      item = "bow";
+      itemsNum = 4;
+  } else if (exerType === "quiver") {
+      item = "quiver-arrow";
+      itemsNum = 4;
+  } else if (exerType === "lesson") {
+      item = "lesson-arrow";
+      itemsNum = 7;
+  }
+
+  if (eval("arr_" + exerType).length > 1) {
+      // previous item disappear
+      if (disappear === true) {
+          $(`#${item}-${eval("arr_" + exerType)[eval("curr_" + exerType)].number}`).css("display", "none");
+          $(`#${item}-${eval("arr_" + exerType)[eval("curr_" + exerType)].number}`).css("opacity", "0");
+      }
+      // changing the item number
+      if (window["curr_" + exerType] + indexNum < 0 ) {
+          window["curr_" + exerType] = window["arr_" + exerType].length - 1;
+      } else if (window["curr_" + exerType] + indexNum === window["arr_" + exerType].length) {
+          window["curr_" + exerType] = 0;
+      } else {
+          window["curr_" + exerType]  += indexNum;
+      }
+      // current item changes
+      $(`#${item}-${eval("arr_" + exerType)[eval("curr_" + exerType)].number}`).css("display", "block");
+      $(`#${item}-${eval("arr_" + exerType)[eval("curr_" + exerType)].number}`).animate({opacity: "1"}, 450);
+      $(`#${exerType}-number`).text(`${eval("arr_" + exerType)[eval("curr_" + exerType)].number}/${itemsNum}`);
+      // bow title change
+      if (exerType === "bow") {
+          $(`#bow-title`).text(arr_bow[curr_bow].bowTitle);
+      }
+  }
+  // if all the items are matched 
+  else {
+      if (exerType === "bow") {
+          $(`#arrows-container`).css("display", "none");
+          $("#bow-exer .speech-bubble").text("אתם חדים כמו חץ!");
+      } else if (exerType === "quiver") {
+          $("#quiver-exer .speech-bubble").text("בול פגיעה!");
+          $("#quiver-number").css("visibility", "hidden");
+      } else if (exerType === "lesson") {
+          $("#lesson-exer .speech-bubble").text("אתם שפיצים!");
+          $("#lesson-number").css("visibility", "hidden");
+      }
+      // display prev and next buttons
+      $("#controls").css("display", "flex");
+      $("#controls .control-button").css("display", "block");
+      ArrPages[nPage-1].functions.push('pop_removeExer(1)');
+  }
+}
+
+Drag = () => {
+  $(`#${exerType}-exer .arrow`).draggable({
+      revert: "invalid",
+      revertDuration: 200,
+      // so drag won't get stuck because of css property bottom = 0
+      drag: function( event, ui ) {
+         if (exerType === "quiver" || exerType === "lesson") {
+          $(this).css({
+              top: $(this).position().top,
+              bottom: "auto"
+          });
+         }
+      }
+      // containment: "parent"
+    });
+
+  for (let i = 1; i <= window["arr_" + exerType].length; i++) {
+  $(`#${exerType}-drop-${i}`).droppable({
+      tolerance: "intersect",
+      accept: $(`.${exerType}-arrow-${i}`),
+      drop: function(e,ui) {
+          if (exerType === "bow") {
+              ui.draggable.animate({left: "-100vw"}, 200, function() {
+              removeItem();
+              });
+          } else if (exerType === "quiver" || exerType === "lesson") {
+            if (exerType === "lesson") {
+              ui.draggable.css({
+                left: "0",
+                right: "-23vw"
+              })
+            }
+              ui.draggable.draggable('disable');
+              removeItem();
+          }
+       }
+      });
+  } 
+}
+
+// function that removes the item from the array
+removeItem = () => {
+  let disappear;
+  if (exerType === "bow") {
+      disappear = true;
+  } else if (exerType === "quiver" || exerType === "lesson") {
+      disappear = false;
+  }
+  // animation of disappear
+  $.when(changeCarousel(1, disappear)).then(function() {
+      // changeBow function raises curr var
+      if (window["curr_" + exerType] !== 0 ) {
+          --window["curr_" + exerType];
+      } else {
+          window["curr_" + exerType] = window["arr_" + exerType].length -1;
+      }
+      // removing from array
+      window["arr_" + exerType].splice( window["curr_" + exerType], 1);
+      if (window["curr_" + exerType] === window["arr_" + exerType].length) {
+          window["curr_" + exerType] = 0;
+      }
+      if (window["arr_" + exerType].length === 1) {
+          $(`#${exerType}-controls .control-button`).css("visibility", "hidden");
+      }
+  }); 
 }
