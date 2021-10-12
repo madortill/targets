@@ -148,7 +148,7 @@ var ArrPages = [
     functions: ['pop_changeCarousel($("#prev-lesson"), "lesson", -1)', 'pop_changeCarousel($("#next-lesson"), "lesson", 1)'],
     moveButtons: false,
     lessonMap: false,
-    robinText: "את השיעור נהוג לחלק לשלושה חלקים (פתיחה, גוף וסיכום)- התאימו בין חלקי השיעור (המטרות) לתפקידיהם (החיצים) באמצעות גרירה"
+    robinText: "התאימו בין חלקי השיעור (המטרות) לתפקידיהם (החיצים) באמצעות גרירה"
   },
   {
     // table example- page 18
