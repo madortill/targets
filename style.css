@@ -497,11 +497,11 @@ td {
 
 /* types */
 #types table {
-  top: 7vh;
+  top: 4vh;
 }
 
 #types td {
-    padding: 3vw 3vh;
+    padding: 2vw 2vh;
 }
 
 #types .first-column {
@@ -827,7 +827,7 @@ td {
 /* table exercise */
 
 table {
-  width: 85vw;
+  width: 90vw;
   margin-top: 2vh;
 }
 
@@ -859,6 +859,7 @@ table {
 
 #table-explaining td {
   padding: 1vh 3vw;
+  font-size: 0.93rem;
 }
 
 #time {
