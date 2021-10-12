@@ -70,7 +70,7 @@ body, #main {
 .content-flex {
   display: flex;
   position: relative;
-  width: 85%;
+  width: 90%;
   margin: auto;
   justify-content: flex-start;
   align-items: flex-start;
@@ -470,7 +470,7 @@ td {
 #importance .speech-bubble {
   position: relative;
   z-index: 2;
-  width: 58vw;
+  width: 63vw;
   height: 4vh;
   margin: auto;
   margin-top: 1vh;
@@ -756,7 +756,7 @@ td {
 
 .lesson-flex {
   width: 100vw;
-  height: 20vh;
+  height: 19vh;
   position: relative;
   display: flex;
   flex-wrap: wrap;
@@ -797,7 +797,7 @@ td {
   display: block;
   width: 100vw;
   background-color: transparent;
-  height: 17vh;
+  height: 16vh;
   position: relative;
   left: 0vw;
 }
@@ -835,7 +835,7 @@ table {
   position: relative;
   display: flex;
   flex-wrap: nowrap;
-  width: 85vw;
+  width: 90vw;
   justify-content: space-between;
   margin:auto;
 }
@@ -877,7 +877,7 @@ table {
   height: 55vh;
   overflow-y: scroll;
   border-radius: 8px;
-  width: 85vw;
+  width: 90vw;
   margin: auto;
   position: relative;
   margin-top: 6vh;
