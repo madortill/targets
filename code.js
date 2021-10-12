@@ -177,7 +177,7 @@ var ArrPages = [
   {
     // tunning page- page 21
     divName: ["running-page"],
-    functions: ['pop_buttons($("#topic-4"), ArrPages.findIndex(x => x.divName.includes("table-example")), "equal")', 'changeTopic(4)'], 
+    functions: ['pop_buttons($("#topic-4"), ArrPages.findIndex(x => x.divName.includes("running-page")), "equal")', 'changeTopic(4)'], 
     moveButtons: true, 
     lessonMap: true, 
     robinText: 'שימו לב! אחרי שתעברו לעמוד הבא תגיעו לבוחן ולא תוכלו לחזור אחורה'
