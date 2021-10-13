@@ -175,7 +175,7 @@ var ArrPages = [
     robinText: ''
   },
   {
-    // tunning page- page 21
+    // running page- page 21
     divName: ["running-page"],
     functions: ['pop_buttons($("#topic-4"), ArrPages.findIndex(x => x.divName.includes("running-page")), "equal")', 'changeTopic(4)'], 
     moveButtons: true, 
@@ -183,9 +183,49 @@ var ArrPages = [
     robinText: 'שימו לב! אחרי שתעברו לעמוד הבא תגיעו לבוחן ולא תוכלו לחזור אחורה'
   },
   {
+    // american question 1- page 22
+    divName: ["american-question-1"],
+    functions: ['pop_americanQuestion()', 'disabledButton($("#prev"), "none")'], 
+    moveButtons: true, 
+    lessonMap: false, 
+    robinText: 'שימו לב! אחרי שתעברו לעמוד הבא תגיעו לבוחן ולא תוכלו לחזור אחורה'
+  },
+  {
+    // american question 2- page 23
+    divName: ["american-question-2"],
+    functions: ['pop_americanQuestion()', 'disabledButton($("#prev"), "auto")'], 
+    moveButtons: true, 
+    lessonMap: false, 
+    robinText: 'שימו לב! אחרי שתעברו לעמוד הבא תגיעו לבוחן ולא תוכלו לחזור אחורה'
+  },
+  {
+    // american question 3- page 24
+    divName: ["american-question-3"],
+    functions: ['pop_americanQuestion()'], 
+    moveButtons: true, 
+    lessonMap: false, 
+    robinText: 'שימו לב! אחרי שתעברו לעמוד הבא תגיעו לבוחן ולא תוכלו לחזור אחורה'
+  },
+  {
+    // american question 4- page 25
+    divName: ["american-question-4"],
+    functions: ['pop_americanQuestion()'], 
+    moveButtons: true, 
+    lessonMap: false, 
+    robinText: 'שימו לב! אחרי שתעברו לעמוד הבא תגיעו לבוחן ולא תוכלו לחזור אחורה'
+  },
+  {
+    // american question 5- page 26
+    divName: ["american-question-5"],
+    functions: ['pop_americanQuestion()'], 
+    moveButtons: true, 
+    lessonMap: false, 
+    robinText: 'שימו לב! אחרי שתעברו לעמוד הבא תגיעו לבוחן ולא תוכלו לחזור אחורה'
+  },
+  {
     // opening game- page ?
     divName: ["robin-trial"],
-    functions: [""],
+    functions: [''],
     moveButtons: true, 
     lessonMap: true, 
     robinText: ""
@@ -433,7 +473,7 @@ removeItem = () => {
   }
   // animation of disappear
   $.when(changeCarousel(1, disappear)).then(function() {
-      // changeBow function raises curr var
+      // changeCarousel function raises curr var
       if (window["curr_" + exerType] !== 0 ) {
           --window["curr_" + exerType];
       } else {
