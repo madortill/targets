@@ -54,6 +54,14 @@ body, #main {
   background-size: 100% 100%;
 }
 
+.right {
+  color: rgba(105,255,160);
+}
+
+.wrong {
+  color: rgba(255,123,123);
+}
+
 .exer-speech-bubble {
   position: relative;
   z-index: 2;
@@ -121,6 +129,10 @@ body, #main {
 
 .text-align {
   text-align: center;
+}
+
+.disabled {
+  filter: brightness(70%);
 }
 
 /* tables */
@@ -401,7 +413,7 @@ td {
   width: 89vw;
   height: 24vh;
   margin-top: 1vh;
-  left: -8vw;
+  left: -6vw;
   padding: 2vh 6vw;
   background-image: url(assets/media/3הערכת\ מצב/bubble_arrowhead_big.svg);
 }
@@ -897,6 +909,55 @@ table {
   background-color: rgba(252, 81, 146, 0.6);
 }
 
+/* american questions */
+.american-question .speech-bubble {
+  bottom: 0px;
+  position: fixed;
+  z-index: 0;
+  height: 45.4vw;
+  right: -5vw;
+  background-image: url("assets/media/bubble_fullrobin.svg");
+  padding: 4vw;
+  padding-top: 9vw;
+  padding-right: 40vw;
+}
+
+.question-num {
+  width: 2vw;
+  background-color: white;
+  text-align: center;
+  border-radius: 15px;
+  padding: 1vw 2vh;
+  margin-right: 4vw;
+}
+
+.american-question .title{
+  background-color: rgba(233, 123, 49, 0.6);
+}
+
+.question-container {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 90vw;
+  height: 43vh;
+  margin: auto;
+  top: 6vh;
+}
+
+.flex-question {
+  background-color: white;
+  border-radius: 7px;
+  border-style: solid;
+  border-width: medium;
+  border-color: transparent;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 2% 2%;
+  height: 13%;
+}
 
 /*  */
 
@@ -905,12 +966,3 @@ table {
   justify-content: center;
   display: flex;
 }
-
-#bubble-robin-big {
-  bottom: 0px;
-  position: fixed;
-  z-index: 0;
-  height: 59vw;
-  right: -5vw;
-}
-
