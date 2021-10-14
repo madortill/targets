@@ -46,12 +46,33 @@ body, #main {
   z-index: 0;
 }
 
+.robin-hod {
+  position: fixed;
+  z-index: 2;
+  bottom: 0;
+}
+
+.big-robin {
+  height: 55vh;
+  right: -15vw;
+}
+
 .speech-bubble {
   font-family: "nehama";
   font-size: 1.4rem;
   color: rgb(60, 60, 59);
   background-repeat: no-repeat;
   background-size: 100% 100%;
+}
+
+.big-bubble {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  width: 90%;
+  left: 0;
+  padding: 5vw;
+  background-image: url(assets/media/bubble_big.svg);
 }
 
 .right {
@@ -230,17 +251,6 @@ td {
   right: 0;
 }
 
-.robin-hod {
-  position: fixed;
-  z-index: 2;
-  bottom: 0;
-}
-
-#general-opening-game .robin-hod {
-  height: 55vh;
-  right: -15vw;
-}
-
 /* pages 0-2 */
 .drag-arrow {
   position: relative;
@@ -301,24 +311,10 @@ td {
 }
 
 /* pages 3*/
-#opening-game-conclusion .speech-bubble,  #about .speech-bubble, #lesson-plan-opening .speech-bubble {
-  position: fixed;
-  z-index: 2;
-  top: 0;
-  width: 90%;
-  left: 0;
-  padding: 5vw;
-  background-image: url(assets/media/bubble_big.svg);
-}
 
 #opening-game-conclusion .speech-bubble {
   height: 35vmax;
   padding-top: 10vw;
-}
-
-#opening-game-conclusion .robin-hod {
-  height: 58vh;
-  right: -15vw;
 }
 
 #opening-game-conclusion .speech-bubble span {
@@ -368,11 +364,11 @@ td {
   font-size: 15vw;
 }
 
-#about .speech-bubble, #lesson-plan-opening .speech-bubble{
-  height: 48vmax;
+#about .speech-bubble, #lesson-plan-opening .speech-bubble, #ending .speech-bubble {
+  height: 44vmax;
 }
 
-#about .robin-hod, #lesson-plan-opening .robin-hod {
+#lesson-plan-opening .robin-hod {
   height: 45vh;
   right: -17.5vw;
   bottom: -6vw;
@@ -959,10 +955,12 @@ table {
   height: 13%;
 }
 
-/*  */
+/* ending */
 
-#robin-trial .container {
-  align-items: center;
-  justify-content: center;
-  display: flex;
+#replay {
+  position: fixed;
+  z-index: 2;
+  bottom: 0;
+  height: 27vh;
+  right: 31vw;
 }
