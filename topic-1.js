@@ -7,7 +7,7 @@ const triangle_text = {
   
   function pop_changeTriangle() {
     // disable moving page
-    $(".control-button").css("pointer-events", "none");
+    disabledButton($(".control-button"), "none");
     $(".click-triangle").on("click", function() {
       let triangle_num = $(event.target).attr("id").slice(-1);
       // the triangle is colored (only once for each)
@@ -19,7 +19,7 @@ const triangle_text = {
       $("#assessment .speech-bubble").html(triangle_text["triangle_" + triangle_num]);
       // if all the three triangles are colored
         if(colored_triangles === Object.keys(triangle_text).length) {
-          $(".control-button").css("pointer-events", "auto");
+          disabledButton($(".control-button"), "auto");
           ArrPages[nPage].robinText = 'כיאה ללוחם אמיץ כמוני, אני משתמש במשולש לח"מ- לומד, חומר ומלמד.<br>לחצו על כל אחד מהמשולשים שמרכיבים את החץ כדי לקרוא עליו.';
           // add to the num of the triangles so it won't enter the condition again
           colored_triangles++;
