@@ -1,6 +1,7 @@
 var nPage = 0;
 var currTopic = null;
 var exerType;
+var numCorrectAns = 0;
 
 var ArrPages = [
   // opening
@@ -50,7 +51,7 @@ var ArrPages = [
     functions: [],
     moveButtons: true,
     lessonMap: false,
-    robinText: '<img id="till" class="logo" src="assets/media/symbols/tilblack.svg"><div><b>אודות</b></div><b>רמ"ד טיל-</b> רס"ן מיגל לוויתן<br><b>רת"ח מו"פ וחדשנות בלמידה-</b> סמ"ר גל גנסין<br><b>עיצוב גרפי-</b> סמל מייה ליבנה<br><b>תכנות-</b> רב"ט טל סרוסי<br><b>מומחית תוכן-</b> סג"מ שירה רוט<br>גרסה</b>- אוקטובר 2021<b></div>'
+    robinText: '<img id="till" class="logo" src="assets/media/symbols/tilblack.svg"><div><b>אודות</b></div><b>רמ"ד טיל-</b> רס"ן מיגל לוויתן<div class="scape"></div><b>רת"ח מו"פ וחדשנות בלמידה-</b> סמ"ר גל גנסין<div class="scape"></div><b>עיצוב גרפי-</b> סמל מייה ליבנה<div class="scape"></div><b>תכנות-</b> רב"ט טל סרוסי<div class="scape"></div><b>מומחית תוכן-</b> סג"מ שירה רוט<div class="scape"></div><b>גרסה-</b> אוקטובר 2021</div>'
   },
   {
     // lesson's goals- page 6
@@ -223,12 +224,12 @@ var ArrPages = [
     robinText: 'שימו לב! אחרי שתעברו לעמוד הבא תגיעו לבוחן ולא תוכלו לחזור אחורה'
   },
   {
-    // opening game- page ?
-    divName: ["robin-trial"],
-    functions: [''],
-    moveButtons: true, 
-    lessonMap: true, 
-    robinText: ""
+    // ending- page 27
+    divName: ["ending"],
+    functions: ['pop_buttons($("#replay"), ArrPages.findIndex(x => x.divName.includes("opening")), "equal")'],
+    moveButtons: false, 
+    lessonMap: false, 
+    robinText: `סיימתם את הלומדה עם ${numCorrectAns}/5 תשובות נכונות.<div class="scape"></div><div class="text-align second-title">כל הכבוד!</div>`
   }
 ];
 
