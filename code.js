@@ -1,7 +1,6 @@
 var nPage = 0;
 var currTopic = null;
 var exerType;
-var numCorrectAns = 0;
 
 var ArrPages = [
   // opening
@@ -35,7 +34,7 @@ var ArrPages = [
     functions: ['clearIntervalExplanation()'],
     moveButtons: true,
     lessonMap: false,
-    robinText: "אילו הייתם מבינים מה <span>המטרה</span> של הפעולה, הייתם נהנים יותר במהלך פתרון החידה, ולא הייתם מרגישים שאתם מבזבזים את הזמן.<br><br> כך בדיוק נבנה גם שיעור- אם אין לו מטרות הוא מאבד מהיעילות שלו."
+    robinText: "אילו הייתם מבינים מה <span>המטרה</span> של הפעולה, הייתם נהנים יותר במהלך פתרון החידה, ולא הייתם מרגישים שאתם מבזבזים את הזמן.<br><br> כך בדיוק נבנה גם שיעור- אם לא יהיו לו מטרות הוא יאבד מהיעילות שלו."
   },
   {
     // opening game question- page 4
@@ -101,7 +100,7 @@ var ArrPages = [
     functions: ['pop_changeCarousel($("#prev-bow"), "bow", -1)', 'pop_changeCarousel($("#next-bow"), "bow", 1)'],
     moveButtons: false, 
     lessonMap: false, 
-    robinText: "אני צריך שתעזרו לי להתאים בין החיצים לקשתות! גררו את המטרות בניסוח השגוי (חץ) לכלל הניסוח שהופר (הקשת)"
+    robinText: "אני צריך שתעזרו לי להתאים בין החיצים לקשתות! גררו את החץ<b> שלא עומד</b> בכלל הניסוח שכתוב ליד הקשת"
   },
   {
     // rules order- page 12
