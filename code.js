@@ -50,7 +50,7 @@ var ArrPages = [
     functions: [],
     moveButtons: true,
     lessonMap: false,
-    robinText: '<img id="till" class="logo" src="assets/media/symbols/tilblack.svg"><div><b>אודות</b></div><b>רמ"ד טיל-</b> רס"ן מיגל לוויתן<div class="scape"></div><b>רת"ח מו"פ וחדשנות בלמידה-</b> סמ"ר גל גנסין<div class="scape"></div><b>עיצוב גרפי-</b> סמל מייה ליבנה<div class="scape"></div><b>תכנות-</b> רב"ט טל סרוסי<div class="scape"></div><b>מומחית תוכן-</b> סג"מ שירה רוט<div class="scape"></div><b>גרסה-</b> אוקטובר 2021</div>'
+    robinText: '<img id="till" class="logo" src="assets/media/symbols/till.svg"><img id="hinuch" class="logo" src="assets/media/symbols/bhdhinuch.svg"><div><b>אודות</b></div><b>רמ"ד טי"ל-</b> רס"ן מיגל לויתן<div class="scape"></div><b>רת"ח מו"פ וחדשנות בלמידה-</b> סמ"ר גל גנסין<div class="scape"></div><b>עיצוב גרפי-</b> סמל מייה ליבנה<div class="scape"></div><b>תכנות-</b> רב"ט טל סרוסי<div class="scape"></div><b>מומחית תוכן-</b> סג"מ שירה רוט<div class="scape"></div><b>גרסה-</b> אוקטובר 2021</div>'
   },
   {
     // lesson's goals- page 6
@@ -100,7 +100,7 @@ var ArrPages = [
     functions: ['pop_changeCarousel($("#prev-bow"), "bow", -1)', 'pop_changeCarousel($("#next-bow"), "bow", 1)'],
     moveButtons: false, 
     lessonMap: false, 
-    robinText: "אני צריך שתעזרו לי להתאים בין החיצים לקשתות! גררו את החץ<b> שלא עומד</b> בכלל הניסוח שכתוב ליד הקשת"
+    robinText: "בהתאם לכללי הניסוח שלמדתם בעמוד הקודם, גררו את החץ השגוי אל הקשת"
   },
   {
     // rules order- page 12
@@ -225,10 +225,10 @@ var ArrPages = [
   {
     // ending- page 27
     divName: ["ending"],
-    functions: ['pop_buttons($("#replay"), ArrPages.findIndex(x => x.divName.includes("opening")), "equal")'],
+    functions: ['pop_buttons($("#replay"), ArrPages.findIndex(x => x.divName.includes("opening")), "equal")', 'theEnd()'],
     moveButtons: false, 
     lessonMap: false, 
-    robinText: `סיימתם את הלומדה עם ${numCorrectAns}/5 תשובות נכונות.<div class="scape"></div><div class="text-align second-title">כל הכבוד!</div>`
+    robinText: ""
   }
 ];
 
@@ -411,11 +411,13 @@ changeCarousel = (indexNum, disappear) => {
           $("#bow-exer .speech-bubble").text("אתם חדים כמו חץ!");
       } else if (exerType === "quiver") {
           $("#quiver-exer .speech-bubble").text("בול פגיעה!");
+          
           $("#quiver-number").css("visibility", "hidden");
       } else if (exerType === "lesson") {
           $("#lesson-exer .speech-bubble").text("אתם שפיצים!");
           $("#lesson-number").css("visibility", "hidden");
       }
+      $(`#${exerType}-exer .speech-bubble`).css("font-size", "3rem");
       // display prev and next buttons
       $("#controls").css("display", "flex");
       $("#controls .control-button").css("display", "block");
@@ -427,8 +429,10 @@ Drag = () => {
   $(`#${exerType}-exer .arrow`).draggable({
       revert: "invalid",
       revertDuration: 200,
+      stack: "img",
       // so drag won't get stuck because of css property bottom = 0
       drag: function( event, ui ) {
+        // $(this).css("z-index", "+1");
          if (exerType === "quiver" || exerType === "lesson") {
           $(this).css({
               top: $(this).position().top,
@@ -445,8 +449,19 @@ Drag = () => {
       accept: $(`.${exerType}-arrow-${i}`),
       drop: function(e,ui) {
           if (exerType === "bow") {
-              ui.draggable.animate({left: "-100vw"}, 200, function() {
-              removeItem();
+            if (i === 1) {
+              ui.draggable.css("top", "-41vh");
+            } else if (i === 2) {
+              ui.draggable.css("top", "-24vh");
+            } else if (i === 3) {
+              ui.draggable.css("top", "-49vh");
+            } else if (i === 4) {
+              ui.draggable.css("top", "-32.5vh");
+            }
+              // setTimeout(function(){
+                ui.draggable.animate({left: "-100vw"}, 200, function() {
+                  removeItem();
+              // }, 1000);
               });
           } else if (exerType === "quiver" || exerType === "lesson") {
             if (exerType === "lesson") {
