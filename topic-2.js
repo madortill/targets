@@ -3,19 +3,19 @@ var curr_bow = 0;
 var arr_bow = [
     {
         number: 1,
-        bowTitle: "מנוסחות כביצוע של הלומד"
+        bowTitle: "לא מנוסחת כביצוע של הלומד"
     },
     {
         number: 2, 
-        bowTitle: "ברורות וחד משמעיות"
+        bowTitle: "אינה ברורה וחד משמעית"
     },
     {
         number: 3, 
-        bowTitle: "בעלות דרך מדידה"
+        bowTitle: "אינה בעלת דרך מדידה"
     },
     {
         number: 4,
-        bowTitle: "ריאליות"
+        bowTitle: "לא ריאלית"
     }
 ];
 
@@ -71,7 +71,8 @@ feedbackDropDown = () => {
         $("#prev").css("display", "block");
         $("#next").css("display", "block");
         $("#check").css("display", "none");
-        $("#dropdown-exer .speech-bubble").text("בול פגיעה!");
+        $("#dropdown-exer .speech-bubble").text("דייקתם!");
+        $("#dropdown-exer .speech-bubble").css("font-size", "4rem");
     } else {
         $("#dropdown-exer .speech-bubble").text("לא דייקתם... נסו שוב!");
     }
