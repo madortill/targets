@@ -152,6 +152,14 @@ body, #main {
   text-align: center;
 }
 
+.big-font {
+  font-size: 1.6rem;
+}
+
+.bigger-font {
+  font-size: 3rem;
+}
+
 .disabled {
   filter: brightness(70%);
 }
@@ -265,7 +273,7 @@ td {
 }
 
 #opening-game .drag-arrow{
-  filter: drop-shadow(0 0 0.25rem rgb(223, 252, 8));
+  filter: drop-shadow(0 0 1.25vw rgb(27, 99, 255));
 }
 
 #opening-game-question .drag-arrow {
@@ -353,6 +361,7 @@ td {
 /* about */
 .logo {
   width: 10vw;
+  margin: 0 1vw;
 }
 
 #about .speech-bubble div, #lesson-plan-opening .speech-bubble div{
@@ -398,8 +407,12 @@ td {
   background-color: rgba(240, 255, 255, 0.6);
 }
 
-#lesson-goals .content, #assessment .content, #wording-rules .content, #order-rules .content, #goals-example .content {
-  height: 60vh;
+#lesson-goals .content, #assessment .content, #wording-rules .content, #order-rules .content, #goals-example .content, #running-page .content {
+  min-height: 60vh;
+}
+
+#lesson-goals span {
+  margin-left: 1.5vw;
 }
 
 /* assesment */
@@ -408,8 +421,9 @@ td {
   z-index: 2;
   width: 89vw;
   height: 24vh;
-  margin-top: 1vh;
-  left: -6vw;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   padding: 2vh 6vw;
   background-image: url(assets/media/3הערכת\ מצב/bubble_arrowhead_big.svg);
 }
@@ -489,6 +503,10 @@ td {
 
 #importance .title {
   background-color: rgba(252, 158, 81, 0.6);
+}
+
+#importance .content {
+  min-height: 45vh;
 }
 
 .flex-bullet {
@@ -574,11 +592,11 @@ td {
   display: block;
   width: 90vw;
   background-color: transparent;
-  height: 5vh;
+  height: 19vh;
   margin: auto;
   left: 0;
   right: 0;
-  top: 12vh;
+  top: 5vh;
   z-index: 1;
 }
 
@@ -616,7 +634,8 @@ td {
 .arrow {
   display: block;
   position: relative;
-  width: 80vw;
+  width: 46vh;
+  max-width: 90vw;
   margin: auto;
 }
 
@@ -683,6 +702,10 @@ td {
 }
 
 /* dropdown exer */
+
+#dropdown-exer .content {
+  min-height: 55vh;
+}
 
 .ui-button:active .ui-icon, .ui-button:hover .ui-icon, .ui-button:focus .ui-icon, .ui-icon, .ui-button .ui-icon {
   background-image: none;
@@ -905,17 +928,23 @@ table {
   background-color: rgba(252, 81, 146, 0.6);
 }
 
+#running-page .speech-bubble {
+  height: 19vw;
+  padding-top: 2vw;
+}
+
 /* american questions */
 .american-question .speech-bubble {
   bottom: 0px;
   position: fixed;
   z-index: 0;
-  height: 45.4vw;
+  height: 33.4vw;
   right: -5vw;
-  background-image: url("assets/media/bubble_fullrobin.svg");
-  padding: 4vw;
-  padding-top: 9vw;
-  padding-right: 40vw;
+  background-image: url(assets/media/bubble_fullrobin_tall.svg);
+  padding: 15vw;
+  padding-top: 5vw;
+  padding-right: 43vw;
+  display: none;
 }
 
 .question-num {
