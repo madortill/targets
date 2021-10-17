@@ -54,7 +54,7 @@ body, #main {
 
 .big-robin {
   height: 50vh;
-  right: -2vw;
+  right: -15vw;
 }
 
 .speech-bubble {
@@ -412,7 +412,7 @@ td {
   min-height: 60vh;
 }
 
-#lesson-goals span {
+#lesson-goals span, #goals-example span {
   margin-left: 1.5vw;
 }
 
