@@ -1,3 +1,4 @@
+var numCorrectAns = 0;
 var arrCorrectAns = [
     {
         correctAns: 4,
@@ -24,7 +25,6 @@ var arrCorrectAns = [
         right: '<span class="right">נכון!</span> לא כל שיעור מכיל תרגול/בחינה של החומר, ופעילות יצירתית היא מומלצת אך גם כן לא חובה',
         wrong: '<span class="wrong">לא נכון!</span> לא כל שיעור מכיל תרגול/בחינה של החומר, ופעילות יצירתית היא מומלצת אך גם כן לא חובה'
     }];
-var numCorrectAns = 0;
 
 pop_americanQuestion = () => {
     disabledButton($("#next"), "none");
@@ -33,10 +33,11 @@ pop_americanQuestion = () => {
         $(`#topic-4 img`).attr("src", "assets/media/map_finish.svg"); 
     }
     $(`#${ArrPages[nPage].divName[0]} .flex-question`).on("click", function() { 
+        $(`#${ArrPages[nPage].divName[0]} .speech-bubble`).css("display", "block");
         // if the user's answer is correct
         if ($(this).hasClass(`ans-${arrCorrectAns[Number(ArrPages[nPage].divName[0].slice(-1)) - 1].correctAns}`)) {
             // correct answer
-            $(this).css("border-color", "rgba(105,255,160)");
+            $(this).css({"border-color":"rgba(105,255,160)", "filter": "drop-shadow(0 0 4.25vw white)"});
             jQuery(this).find("img").attr("src", "assets/media/10תרגול מסכם/americ_right_select.svg");
             numCorrectAns++;
             $(`#${ArrPages[nPage].divName[0]} .flex-question`);
@@ -49,18 +50,19 @@ pop_americanQuestion = () => {
             $(`#${ArrPages[nPage].divName[0]} .speech-bubble`).html(arrCorrectAns[Number(ArrPages[nPage].divName[0].slice(-1)) - 1].wrong);
             ArrPages[nPage].robinText = arrCorrectAns[Number(ArrPages[nPage].divName[0].slice(-1)) - 1].wrong;
             // correct answer
-            $(`#${ArrPages[nPage].divName[0]} .ans-${arrCorrectAns[Number(ArrPages[nPage].divName[0].slice(-1)) - 1].correctAns}`).css("border-color", "rgba(105,255,160)");
+            $(`#${ArrPages[nPage].divName[0]} .ans-${arrCorrectAns[Number(ArrPages[nPage].divName[0].slice(-1)) - 1].correctAns}`).css({"border-color":"rgba(105,255,160)", "filter": "drop-shadow(0 0 4.25vw white)"});
             $(`#${ArrPages[nPage].divName[0]} .ans-${arrCorrectAns[Number(ArrPages[nPage].divName[0].slice(-1)) - 1].correctAns}`).find("img").attr("src", "assets/media/10תרגול מסכם/americ_right.svg");
         }
         $(`#${ArrPages[nPage].divName[0]} .flex-question`).off();
         disabledButton($("#next"), "auto");
-        // if (arrCorrectAns[Number(ArrPages[nPage].divName[0].slice(-1))] === 1) {
-
-        // }
     });
 }
 
 disabledButton = (button, state) => {
     button.css("pointer-events", state);
     button.toggleClass("disabled");
+}
+
+theEnd = () => {
+    $("#ending .speech-bubble").html(`סיימתם את הלומדה עם ${numCorrectAns}/5 תשובות נכונות.<div class="scape"></div><div class="text-align second-title">כל הכבוד!</div>`);
 }
