@@ -58,7 +58,7 @@ pop_changeTable = () => {
         if(colored_parts === Object.keys(table_text).length) {
           disabledButton($(".control-button"), "auto");
           $(".topic").css("pointer-events", "auto");
-          // add to the num of the triangles so it won't enter the condition again
+          // add to the num of the parts so it won't enter the condition again
           colored_parts++;
         }
     });
