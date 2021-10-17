@@ -63,6 +63,7 @@ disabledButton = (button, state) => {
     button.toggleClass("disabled");
 }
 
+
 theEnd = () => {
-    $("#ending .speech-bubble").html(`סיימתם את הלומדה עם ${numCorrectAns}/5 תשובות נכונות.<div class="scape"></div><div class="text-align second-title">כל הכבוד!</div>`);
+    $("#ending .speech-bubble").html(`<div class="big-font">סיימתם את הלומדה עם ${numCorrectAns}/5 תשובות נכונות.<div class="scape"></div><div class="text-align bigger-font">כל הכבוד!</div></div>`);
 }
