@@ -185,7 +185,7 @@ var ArrPages = [
   {
     // american question 1- page 22
     divName: ["american-question-1"],
-    functions: ['pop_americanQuestion()', 'disabledButton($("#prev"), "none")'], 
+    functions: ['pop_americanQuestion()', 'disabledButton($("#prev"), "none")', 'disabledButton($("#next"), "none")'], 
     moveButtons: true, 
     lessonMap: false, 
     robinText: 'שימו לב! אחרי שתעברו לעמוד הבא תגיעו לבוחן ולא תוכלו לחזור אחורה'
@@ -193,7 +193,7 @@ var ArrPages = [
   {
     // american question 2- page 23
     divName: ["american-question-2"],
-    functions: ['pop_americanQuestion()', 'disabledButton($("#prev"), "auto")'], 
+    functions: ['pop_americanQuestion()', 'disabledButton($("#prev"), "auto")', 'disabledButton($("#next"), "none")'], 
     moveButtons: true, 
     lessonMap: false, 
     robinText: 'שימו לב! אחרי שתעברו לעמוד הבא תגיעו לבוחן ולא תוכלו לחזור אחורה'
@@ -201,7 +201,7 @@ var ArrPages = [
   {
     // american question 3- page 24
     divName: ["american-question-3"],
-    functions: ['pop_americanQuestion()'], 
+    functions: ['pop_americanQuestion()', 'disabledButton($("#next"), "none")'], 
     moveButtons: true, 
     lessonMap: false, 
     robinText: 'שימו לב! אחרי שתעברו לעמוד הבא תגיעו לבוחן ולא תוכלו לחזור אחורה'
@@ -209,7 +209,7 @@ var ArrPages = [
   {
     // american question 4- page 25
     divName: ["american-question-4"],
-    functions: ['pop_americanQuestion()'], 
+    functions: ['pop_americanQuestion()', 'disabledButton($("#next"), "none")'], 
     moveButtons: true, 
     lessonMap: false, 
     robinText: 'שימו לב! אחרי שתעברו לעמוד הבא תגיעו לבוחן ולא תוכלו לחזור אחורה'
@@ -217,7 +217,7 @@ var ArrPages = [
   {
     // american question 5- page 26
     divName: ["american-question-5"],
-    functions: ['pop_americanQuestion()'], 
+    functions: ['pop_americanQuestion()', 'disabledButton($("#next"), "none")'], 
     moveButtons: true, 
     lessonMap: false, 
     robinText: 'שימו לב! אחרי שתעברו לעמוד הבא תגיעו לבוחן ולא תוכלו לחזור אחורה'
@@ -235,18 +235,6 @@ var ArrPages = [
 $(function() {
   // calls the opening game
   movePage();
-
-
-  // add event listenes to buttons
-
-
-  // !!!remember to add event listeners to back and next button!!!
-      // adds to the page counter
-      // nPage++
-        // hides last div
-  // $("#page" + nPage).css("display", "none");
-
-  // and to the first page play button and about
 });
 
 function movePage() {
