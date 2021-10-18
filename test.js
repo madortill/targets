@@ -27,7 +27,7 @@ var arrCorrectAns = [
     }];
 
 pop_americanQuestion = () => {
-    disabledButton($("#next"), "none");
+    // disabledButton($("#next"), "none");
     // lesson map
     if (Number(ArrPages[nPage].divName[0].slice(-1)) === 1) {
         $(`#topic-4 img`).attr("src", "assets/media/map_finish.svg"); 
@@ -55,14 +55,19 @@ pop_americanQuestion = () => {
         }
         $(`#${ArrPages[nPage].divName[0]} .flex-question`).off();
         disabledButton($("#next"), "auto");
+        ArrPages[nPage].functions.pop();
+        ArrPages[nPage].functions.push('disabledButton($("#next"), "auto")');
     });
 }
 
 disabledButton = (button, state) => {
     button.css("pointer-events", state);
-    button.toggleClass("disabled");
+    if (state === "none") {
+        button.addClass("disabled");
+    } else if (state === "auto") {
+        button.removeClass("disabled");
+    }  
 }
-
 
 theEnd = () => {
     $("#ending .speech-bubble").html(`<div class="big-font">סיימתם את הלומדה עם ${numCorrectAns}/5 תשובות נכונות.<div class="scape"></div><div class="text-align bigger-font">כל הכבוד!</div></div>`);
