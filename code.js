@@ -462,22 +462,22 @@ Drag = () => {
               if (i === 1) {
                 ui.draggable.css({
                   top: "0",
-                  bottom: "-50vh"
+                  bottom: "-45vh"
                 })
               } else if (i === 2) {
                 ui.draggable.css({
                   top: "0",
-                  bottom: "0vh"
+                  bottom: "5vh"
                 })
               } else if (i === 3) {
                 ui.draggable.css({
                   top: "0",
-                  bottom: "25vh"
+                  bottom: "30vh"
                 })
               } else if (i === 4) {
                 ui.draggable.css({
                   top: "0",
-                  bottom: "-25vh"
+                  bottom: "-20vh"
                 })
               }
               ui.draggable.css({
