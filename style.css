@@ -193,7 +193,7 @@ td {
 #controls {
   position: fixed;
   bottom: 0;
-  height: 23.5vw;
+  height: 18.5vw;
   width: 100%;
   background-color: rgba(240, 255, 255, 0.5);
   backdrop-filter: blur(3px);
@@ -232,6 +232,7 @@ td {
   justify-content: center;
   width: 25%;
   height: 100%;
+  margin-top: 13vw;
  }
 
 .lesson-map-target {
@@ -241,11 +242,33 @@ td {
 .topic-text {
   text-align: center;
   font-family: "Rubik-Bold";
-  font-size: 3.8vw;
-  width: 100%;
-  height: 4vh;
-  color: rgb(60, 60, 59);
-  line-height: 1.1;
+  font-size: 6rem;
+  fill: rgb(60, 60, 59);
+  letter-spacing: -5px;
+}
+
+#controls svg {
+  width: 18vw;
+  z-index: -1;
+  top: -13vw;
+  position: relative;
+  left: -0.5vw;
+}
+
+#topic-1 svg, #topic-3 svg {
+  transform: rotate(82deg);
+}
+
+#topic-2 svg {
+  transform: rotate(125deg);
+}
+
+#topic-4 svg {
+  transform: rotate(135deg);
+}
+
+svg textPath {
+  direction: ltr;
 }
 
 /* opening game */
@@ -386,15 +409,15 @@ td {
 
 /* lesson-goals */
 #lesson-goals .robin-hod, #order-rules .robin-hod, #goals-example .robin-hod, #running-page .robin-hod{
-  height: 42vh;
-  right: -15vw;
+  height: 38vh;
+  right: -10vw;
   bottom: -5vw;
 }
 
 #lesson-goals .speech-bubble, #order-rules .speech-bubble,  #running-page .speech-bubble {
   position: fixed;
   z-index: 2;
-  bottom: 23.5vw;
+  bottom: 18.5vw;
   width: 55vw;
   height: 16vw;
   left: 0;
