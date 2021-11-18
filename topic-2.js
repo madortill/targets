@@ -7,16 +7,24 @@ var arr_bow = [
     },
     {
         number: 2, 
-        bowTitle: "אינה ברורה וחד משמעית"
+        bowTitle: "לא מכילה מדד כמותי"
     },
     {
         number: 3, 
-        bowTitle: "אינה בעלת דרך מדידה"
+        bowTitle: "לא מכילה מדד איכותי"
     },
     {
         number: 4,
-        bowTitle: "לא ריאלית"
-    }
+        bowTitle: "הביצוע לא ניתן למדידה ותצפית"
+    },
+    {
+        number: 5, 
+        bowTitle: "לא מגדירה את עצם הלמידה"
+    },
+    {
+        number: 6, 
+        bowTitle: "לא מפרידה בין רמות חשיבה"
+    },
 ];
 
 var curr_quiver = 0;
@@ -35,7 +43,7 @@ var arr_quiver = [
     }
 ];
 
-const arrDropDown = ["מטרת העל", "מטרות ביניים", "חייל", "יגדיר", "חייל", "יתרגל", "חייל", "ידע לבצע"];
+const arrDropDown = ["מטרת העל", "מטרות ביניים", "חייל", "יסביר", "חייל", "3", "יחבוש"];
 var currDropDown = 0;
 
 // function that activates the drop-downs and shows the check button
@@ -73,7 +81,9 @@ feedbackDropDown = () => {
         $("#check").css("display", "none");
         $("#dropdown-exer .speech-bubble").text("דייקתם!");
         $("#dropdown-exer .speech-bubble").css("font-size", "4rem");
+        ArrPages[nPage-1].functions.push('pop_removeExer(1)');
     } else {
         $("#dropdown-exer .speech-bubble").text("לא דייקתם... נסו שוב!");
+        $("#dropdown-exer .speech-bubble").css("font-size", "3rem");
     }
 }
