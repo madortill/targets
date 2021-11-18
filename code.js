@@ -2,6 +2,10 @@ var nPage = 0;
 var currTopic = null;
 var exerType;
 
+let item;
+let itemsNum;
+let finish;
+
 var ArrPages = [
   // opening
   {
@@ -64,7 +68,7 @@ var ArrPages = [
   {
     // assessment- page 7
     divName: ["assessment"],
-    functions: ['goTwoBack(-1)', 'pop_changeTriangle()', 'pop_buttons($("#topic-1"), ArrPages.findIndex(x => x.divName.includes("assessment")), "equal")', 'changeTopic(1)'], 
+    functions: ['goTwoBack(-1)', 'pop_speechBubble()', 'pop_buttons($("#topic-1"), ArrPages.findIndex(x => x.divName.includes("assessment")), "equal")', 'changeTopic(1)', 'fixZindex()'], 
     moveButtons: true, 
     lessonMap: true, 
     robinText: 'כיאה ללוחם אמיץ כמוני, אני משתמש במשולש לח"מ- לומד, חומר ומלמד.<br>לחצו על כל אחד מהמשולשים שמרכיבים את החץ כדי לקרוא עליו (לא תוכלו לעבור עמוד לפני שתלמדו על כולם).'
@@ -87,36 +91,36 @@ var ArrPages = [
     robinText: ''
   },
   {
-    // wording rules- page 10
-    divName: ["wording-rules"],
-    functions: [""], 
+    // rules order- page 10
+    divName: ["texonomy"],
+    functions: ["pop_speechBubble()", 'fixZindex()'], 
     moveButtons: true, 
     lessonMap: true, 
-    robinText: ''
+    robinText: 'לחצו על כל אחת מהרמות שמרכיבות את החץ כדי לקרוא עליה (לא תוכלו לעבור עמוד לפני שתלמדו על כולן).<br>שימו לב! לא ניתן לכתוב מטרה עם רמת חשיבה נמוכה משל קודמתה.'
   },
   {
     // bow matching exercise- page 11
-    divName: ["bow-exer"],
-    functions: ['pop_changeCarousel($("#prev-bow"), "bow", -1)', 'pop_changeCarousel($("#next-bow"), "bow", 1)'],
-    moveButtons: false, 
-    lessonMap: false, 
-    robinText: "בהתאם לכללי הניסוח שלמדתם בעמוד הקודם, גררו את החץ השגוי אל הקשת"
-  },
-  {
-    // rules order- page 12
-    divName: ["order-rules"],
-    functions: ["pop_removeExer(-1)"], 
-    moveButtons: true, 
-    lessonMap: true, 
-    robinText: 'שימו לב! סעיפי "התנסות" ו"תרגול" אינם חובה!'
-  },
-  {
-    // bow matching exercise- page 13
     divName: ["quiver-exer"],
-    functions: ['pop_changeCarousel($("#prev-quiver"), "quiver", -1)', 'pop_changeCarousel($("#next-quiver"), "quiver", 1)'],
+    functions: ['pop_finishExer($("#prev-quiver"), "quiver", -1)', 'pop_finishExer($("#next-quiver"), "quiver", 1)'],
     moveButtons: false, 
     lessonMap: false, 
     robinText: "גררו את החיצים למקום הנכון בתרמיל החיצים הפתוח לפי סדר כתיבת המטרות שלמדנו"
+  },
+  {
+    // wording rules- page 12
+    divName: ["rules"],
+    functions: ["pop_removeExer(-1)", "pop_speechBubble()"], 
+    moveButtons: true, 
+    lessonMap: true, 
+    robinText: 'לחצו על המטרה שליד כל כלל ניסוח כדי לראות דוגמאות למטרות נכונות ושגויות'
+  },
+  {
+    // bow matching exercise- page 13
+    divName: ["bow-exer"],
+    functions: ['pop_finishExer($("#prev-bow"), "bow", -1)', 'pop_finishExer($("#next-bow"), "bow", 1)'],
+    moveButtons: false, 
+    lessonMap: false, 
+    robinText: "התאימו בין 4 מטרות שנוסחו לא נכון (החיצים), לבין כללי הניסוח שהופרו (הקשתות)"
   },
   {
     // example for writing goals- page 14
@@ -145,7 +149,7 @@ var ArrPages = [
   {
     // sorting lesson's parts roles exercise- page 17
     divName: ["lesson-exer"],
-    functions: ['pop_changeCarousel($("#prev-lesson"), "lesson", -1)', 'pop_changeCarousel($("#next-lesson"), "lesson", 1)'],
+    functions: ['pop_finishExer($("#prev-lesson"), "lesson", -1)', 'pop_finishExer($("#next-lesson"), "lesson", 1)'],
     moveButtons: false,
     lessonMap: false,
     robinText: "התאימו בין חלקי השיעור (המטרות) לתפקידיהם (החיצים) באמצעות גרירה"
@@ -341,7 +345,7 @@ pop_removeExer = (exerPage) => {
 }
 
 // function that adds events listeners to bows exrcise carousel's prev and next buttons
-pop_changeCarousel = (button, exerTypeParam, indexNum) => {
+pop_finishExer = (button, exerTypeParam, indexNum) => {
   // function that changes the carrousel of the bows exercise
   button.on("click", () => {
     // exerType === "bow"/"quiver"/"lesson"
@@ -352,65 +356,74 @@ pop_changeCarousel = (button, exerTypeParam, indexNum) => {
 }
 
 // exercise's functions
-
-// generic function that disappears and reveals items in carousels
-changeCarousel = (indexNum, disappear) => {
+// function that checks if the user finished the exercise
+finishExer = (indexNum, disappear) => {
   // represents the item that appear and disappear in the html (bow/arrow)
-  let item;
-  let itemsNum;
   if (exerType === "bow") {
-      item = "bow";
-      itemsNum = 4;
+      finish = 2;
   } else if (exerType === "quiver") {
-      item = "quiver-arrow";
-      itemsNum = 4;
+      finish = 0;
   } else if (exerType === "lesson") {
-      item = "lesson-arrow";
-      itemsNum = 7;
+      finish = 0;
   }
-
-  if (eval("arr_" + exerType).length > 1) {
-      // previous item disappear
-      if (disappear === true) {
-          $(`#${item}-${eval("arr_" + exerType)[eval("curr_" + exerType)].number}`).css("display", "none");
-          $(`#${item}-${eval("arr_" + exerType)[eval("curr_" + exerType)].number}`).css("opacity", "0");
-      }
-      // changing the item number
-      if (window["curr_" + exerType] + indexNum < 0 ) {
-          window["curr_" + exerType] = window["arr_" + exerType].length - 1;
-      } else if (window["curr_" + exerType] + indexNum === window["arr_" + exerType].length) {
-          window["curr_" + exerType] = 0;
-      } else {
-          window["curr_" + exerType]  += indexNum;
-      }
-      // current item changes
-      $(`#${item}-${eval("arr_" + exerType)[eval("curr_" + exerType)].number}`).css("display", "block");
-      $(`#${item}-${eval("arr_" + exerType)[eval("curr_" + exerType)].number}`).animate({opacity: "1"}, 450);
-      $(`#${exerType}-number`).text(`${eval("arr_" + exerType)[eval("curr_" + exerType)].number}/${itemsNum}`);
-      // bow title change
-      if (exerType === "bow") {
-          $(`#bow-title`).text(arr_bow[curr_bow].bowTitle);
-      }
+  if (eval("arr_" + exerType).length > (finish + 1)) {
+    changeCarousel(indexNum, disappear);
   }
   // if all the items are matched 
   else {
-      if (exerType === "bow") {
-          $(`#arrows-container`).css("display", "none");
-          $("#bow-exer .speech-bubble").text("אתם חדים כמו חץ!");
-      } else if (exerType === "quiver") {
-          $("#quiver-exer .speech-bubble").text("בול פגיעה!");
-          
-          $("#quiver-number").css("visibility", "hidden");
-      } else if (exerType === "lesson") {
-          $("#lesson-exer .speech-bubble").text("אתם שפיצים!");
-          $("#lesson-number").css("visibility", "hidden");
-      }
-      $(`#${exerType}-exer .speech-bubble`).css("font-size", "3rem");
-      // display prev and next buttons
-      $("#controls").css("display", "flex");
-      $("#controls .control-button").css("display", "block");
-      ArrPages[nPage-1].functions.push('pop_removeExer(1)');
+    if (exerType === "bow") {
+      $(`#arrows-container`).css("display", "none");
+      $("#bow-exer .speech-bubble").text("אתם חדים כמו חץ!");
+    }
+    else if (exerType === "quiver") {
+        $("#quiver-exer .speech-bubble").text("בול פגיעה!");
+        $("#quiver-number").css("visibility", "hidden");
+    } else if (exerType === "lesson") {
+        $("#lesson-exer .speech-bubble").text("אתם שפיצים!");
+        $("#lesson-number").css("visibility", "hidden");
+    }
+    $(`#${exerType}-exer .speech-bubble`).css("font-size", "3rem");
+    // display prev and next buttons
+    $("#controls").css("display", "flex");
+    $("#controls .control-button").css("display", "block");
+    ArrPages[nPage-1].functions.push('pop_removeExer(1)');
   }
+}
+
+// generic function that disappears and reveals items in carousels
+changeCarousel = (indexNum, disappear) => {
+    // represents the item that appear and disappear in the html (bow/arrow)
+    if (exerType === "bow") {
+      item = "bow";
+      itemsNum = 6;
+    } else if (exerType === "quiver") {
+        item = "quiver-arrow";
+        itemsNum = 4;
+    } else if (exerType === "lesson") {
+        item = "lesson-arrow";
+        itemsNum = 7;
+    }
+    // previous item disappear
+    if (disappear === true) {
+      $(`#${item}-${eval("arr_" + exerType)[eval("curr_" + exerType)].number}`).css("display", "none");
+      $(`#${item}-${eval("arr_" + exerType)[eval("curr_" + exerType)].number}`).css("opacity", "0");
+    }
+    // changing the item number
+    if (window["curr_" + exerType] + indexNum < 0 ) {
+        window["curr_" + exerType] = window["arr_" + exerType].length - 1;
+    } else if (window["curr_" + exerType] + indexNum === window["arr_" + exerType].length) {
+        window["curr_" + exerType] = 0;
+    } else {
+        window["curr_" + exerType]  += indexNum;
+    }
+    // current item changes
+    $(`#${item}-${eval("arr_" + exerType)[eval("curr_" + exerType)].number}`).css("display", "block");
+    $(`#${item}-${eval("arr_" + exerType)[eval("curr_" + exerType)].number}`).animate({opacity: "1"}, 450);
+    $(`#${exerType}-number`).text(`${eval("arr_" + exerType)[eval("curr_" + exerType)].number}/${itemsNum}`);
+    // bow title change
+    if (exerType === "bow") {
+        $(`#bow-title`).text(arr_bow[curr_bow].bowTitle);
+    }
 }
 
 Drag = () => {
@@ -420,7 +433,6 @@ Drag = () => {
       stack: "img",
       // so drag won't get stuck because of css property bottom = 0
       drag: function( event, ui ) {
-        // $(this).css("z-index", "+1");
          if (exerType === "quiver" || exerType === "lesson") {
           $(this).css({
               top: $(this).position().top,
@@ -438,13 +450,13 @@ Drag = () => {
       drop: function(e,ui) {
           if (exerType === "bow") {
             if (i === 1) {
-              ui.draggable.css("top", "-41vh");
+              ui.draggable.css("top", "-49.5vh");
             } else if (i === 2) {
-              ui.draggable.css("top", "-24vh");
-            } else if (i === 3) {
-              ui.draggable.css("top", "-49vh");
-            } else if (i === 4) {
               ui.draggable.css("top", "-32.5vh");
+            } else if (i === 5) {
+              ui.draggable.css("top", "-41vh");
+            } else if (i === 6) {
+              ui.draggable.css("top", "-25vh");
             }
               // setTimeout(function(){
                 ui.draggable.animate({left: "-100vw"}, 200, function() {
@@ -458,7 +470,6 @@ Drag = () => {
                 right: "-23vw"
               })
             } else if (exerType === "quiver") {
-
               if (i === 1) {
                 ui.draggable.css({
                   top: "0",
@@ -501,9 +512,9 @@ removeItem = () => {
       disappear = false;
   }
   // animation of disappear
-  $.when(changeCarousel(1, disappear)).then(function() {
-      // changeCarousel function raises curr var
-      if (window["curr_" + exerType] !== 0 ) {
+  $.when(finishExer(1, disappear)).then(function() {
+      // finishExer function raises curr var
+      if (window["curr_" + exerType] !== 0) {
           --window["curr_" + exerType];
       } else {
           window["curr_" + exerType] = window["arr_" + exerType].length -1;
