@@ -1,531 +1,295 @@
+// there are 4 options: 1, 2, 3, 4 (waiting room, therapy room, doctor's room and medicines room)
+// the variable changes when clicking on one of the rooms buttons in the opening
+// there are 4 arrays- one for each room 
+var nRoom = 0;
 var nPage = 0;
-var currTopic = null;
-var exerType;
 
-let item;
-let itemsNum;
-let finish;
-
-var ArrPages = [
-  // opening
-  {
-    // opening game- page 0
-    divName: ["opening-game", "general-opening-game"], // the last div contains the speech bubble
-    functions: ["openingGame()"], // array of functions that are needed to the page. If the functions contain the word "pop", it will happen only once and will be popped out of the array afterwards
-    moveButtons: false, // does this page contains back and next buttons - true/false
-    lessonMap: false, // does this page contains lesson map - true/false
-    robinText: 'היי! אני הוא רובין הו"ד!<br><br>בבקשה תגררו את החץ הכחול אל החלקה הצהובה' // contains Robin's text (unless it is empty)
-  },
+// waiting room
+var Arr_1 = [
   {
     // opening game question- page 1
-    divName: ["opening-game-question", "general-opening-game"],
-    functions: ['pop_buttons($("#prev"), -1, "add")', 'pop_buttons($("#next"), +1, "add")', 'clearIntervalExplanation()', 'pop_openingGameQuestion()'],
-    moveButtons: true,
-    lessonMap: false,
-    robinText: 'כל הכבוד! עזרתם לי לפתור את החידה!'
+    divName: ["r1p1"],
+    functions: [`switch_class($("#back-button"), "visible", "hidden")`, `pop_buttons($("#next-button"), 1)`, "pop_watch_room_button()"],
+    type: "content",
+    topic: 1
   },
   {
-    // opening game explanation- page 2
-    divName: ["opening-game-explanation", "general-opening-game"],
-    functions: ['openingGameExplanation()', "setIntervalExplanation = setInterval(openingGameExplanation, 2600);"],
-    moveButtons: true,
-    lessonMap: false,
-    robinText: 'למעשה על ידי גרירה של החץ האדום למיקום המיועד הצלחתם להפוך את התרגיל המתמטי הנתון לתרגיל הגיוני'
+    // opening game question- page 2
+    divName: ["r1p2"],
+    functions: [`switch_class($("#back-button"), "hidden", "visible")`, `pop_buttons($("#back-button"), -1)`],
+    type: "content",
+    topic: 2
   },
   {
-    // opening game conclusion- page 3
-    divName: ["opening-game-conclusion"],
-    functions: ['clearIntervalExplanation()'],
-    moveButtons: true,
-    lessonMap: false,
-    robinText: "אילו הייתם מבינים מה <span>המטרה</span> של הפעולה, הייתם נהנים יותר במהלך פתרון החידה, ולא הייתם מרגישים שאתם מבזבזים את הזמן.<br><br> כך בדיוק נבנה גם שיעור- אם לא יהיו לו מטרות הוא יאבד מהיעילות שלו."
+    // opening game question- page 3
+    divName: ["r1p3"],
+    functions: ["pop_timeEnds()"],
+    type: "game",
+    timer: "2s"
   },
   {
     // opening game question- page 4
-    divName: ["opening"],
-    functions: ['pop_opening()', 'pop_buttons($("#play"), 2, "add")', 'pop_buttons($("#about-button"), 1, "add")'],
-    moveButtons: false,
-    lessonMap: false,
-    robinText: "" 
+    divName: ["r1p4"],
+    functions: [""],
+    type: "content",
+    topic: 3
   },
-  {
-    // about- page 5
-    divName: ["about"],
-    functions: [],
-    moveButtons: true,
-    lessonMap: false,
-    robinText: '<img id="till" class="logo" src="assets/media/symbols/till.svg"><img id="hinuch" class="logo" src="assets/media/symbols/bhdhinuch.svg"><div><b>אודות</b></div><b>רמ"ד טי"ל-</b> רס"ן מיגל לויתן<div class="scape"></div><b>רת"ח מו"פ וחדשנות בלמידה-</b> סמ"ר גל גנסין<div class="scape"></div><b>עיצוב גרפי-</b> סמל מייה ליבנה<div class="scape"></div><b>תכנות-</b> רב"ט טל סרוסי<div class="scape"></div><b>מומחית תוכן-</b> סג"מ שירה רוט<div class="scape"></div><b>גרסה-</b> אוקטובר 2021</div>'
-  },
-  {
-    // lesson's goals- page 6
-    divName: ["lesson-goals"],
-    functions: ['goTwoBack(-2)', 'pop_goTwoBack_opening()', 'changeTopic(null)'],
-    moveButtons: true,
-    lessonMap: true,
-    robinText: "וכמו בכל שיעור, נתחיל עם הצגת המטרות!"
-  },
-  // assessment
-  {
-    // assessment- page 7
-    divName: ["assessment"],
-    functions: ['goTwoBack(-1)', 'pop_speechBubble()', 'pop_buttons($("#topic-1"), ArrPages.findIndex(x => x.divName.includes("assessment")), "equal")', 'changeTopic(1)', 'fixZindex()'], 
-    moveButtons: true, 
-    lessonMap: true, 
-    robinText: 'כיאה ללוחם אמיץ כמוני, אני משתמש במשולש לח"מ- לומד, חומר ומלמד.<br>לחצו על כל אחד מהמשולשים שמרכיבים את החץ כדי לקרוא עליו (לא תוכלו לעבור עמוד לפני שתלמדו על כולם).'
-  },
-  // goals
-  {
-    // importance of goals- page 8
-    divName: ["importance"],
-    functions: ['pop_buttons($("#topic-2"), ArrPages.findIndex(x => x.divName.includes("importance")), "equal")', 'changeTopic(2)'], 
-    moveButtons: true, 
-    lessonMap: true, 
-    robinText: 'עכשיו אפשר לכתוב מטרות!<br>אבל למה צריך אותן?'
-  },
-  {
-    // types of goals- page 9
-    divName: ["types"],
-    functions: [""], 
-    moveButtons: true, 
-    lessonMap: true, 
-    robinText: ''
-  },
-  {
-    // rules order- page 10
-    divName: ["texonomy"],
-    functions: ["pop_speechBubble()", 'fixZindex()'], 
-    moveButtons: true, 
-    lessonMap: true, 
-    robinText: 'לחצו על כל אחת מהרמות שמרכיבות את החץ כדי לקרוא עליה (לא תוכלו לעבור עמוד לפני שתלמדו על כולן).<br>שימו לב! לא ניתן לכתוב מטרה עם רמת חשיבה נמוכה משל קודמתה.'
-  },
-  {
-    // bow matching exercise- page 11
-    divName: ["quiver-exer"],
-    functions: ['pop_finishExer($("#prev-quiver"), "quiver", -1)', 'pop_finishExer($("#next-quiver"), "quiver", 1)'],
-    moveButtons: false, 
-    lessonMap: false, 
-    robinText: "גררו את החיצים למקום הנכון בתרמיל החיצים הפתוח לפי סדר כתיבת המטרות שלמדנו"
-  },
-  {
-    // wording rules- page 12
-    divName: ["rules"],
-    functions: ["pop_removeExer(-1)", "pop_speechBubble()"], 
-    moveButtons: true, 
-    lessonMap: true, 
-    robinText: 'לחצו על המטרה שליד כל כלל ניסוח כדי לראות דוגמאות למטרות נכונות ושגויות'
-  },
-  {
-    // bow matching exercise- page 13
-    divName: ["bow-exer"],
-    functions: ['pop_finishExer($("#prev-bow"), "bow", -1)', 'pop_finishExer($("#next-bow"), "bow", 1)'],
-    moveButtons: false, 
-    lessonMap: false, 
-    robinText: "התאימו בין 4 מטרות שנוסחו לא נכון (החיצים), לבין כללי הניסוח שהופרו (הקשתות)"
-  },
-  {
-    // example for writing goals- page 14
-    divName: ["goals-example"],
-    functions: ["pop_removeExer(-1)"],
-    moveButtons: true,
-    lessonMap: true,
-    robinText: ""
-  },
-  {
-    // dropdowns exercise- page 15
-    divName: ["dropdown-exer"],
-    functions: ["dropDownInit()"],
-    moveButtons: true,
-    lessonMap: false,
-    robinText: "עזרו לי להשלים את כתיבת המטרות! בחרו את המילים המתאימות בכל מקום חסר!"
-  },
-  {
-    // lesson plan opening- page 16
-    divName: ["lesson-plan-opening"],
-    functions: ["pop_removeExer(-1)"],
-    moveButtons: true,
-    lessonMap: false,
-    robinText: "למדנו כיצד כותבים מטרות, ועכשיו אפשר לכתוב מערך שיעור!"
-  },
-  {
-    // sorting lesson's parts roles exercise- page 17
-    divName: ["lesson-exer"],
-    functions: ['pop_finishExer($("#prev-lesson"), "lesson", -1)', 'pop_finishExer($("#next-lesson"), "lesson", 1)'],
-    moveButtons: false,
-    lessonMap: false,
-    robinText: "התאימו בין חלקי השיעור (המטרות) לתפקידיהם (החיצים) באמצעות גרירה"
-  },
-  {
-    // table example- page 18
-    divName: ["table-example"],
-    functions: ['pop_buttons($("#topic-3"), ArrPages.findIndex(x => x.divName.includes("table-example")), "equal")', 'changeTopic(3)', "pop_removeExer(-1)"], 
-    moveButtons: true, 
-    lessonMap: true, 
-    robinText: ''
-  },
-  {
-    // table example- page 19
-    divName: ["table-explaining"],
-    functions: ["pop_changeTable()"], 
-    moveButtons: true, 
-    lessonMap: true, 
-    robinText: ''
-  },
-  {
-    // lesson plan table example- page 20
-    divName: ["lesson-plan-example"],
-    functions: [""], 
-    moveButtons: true, 
-    lessonMap: true, 
-    robinText: ''
-  },
-  {
-    // running page- page 21
-    divName: ["running-page"],
-    functions: ['pop_buttons($("#topic-4"), ArrPages.findIndex(x => x.divName.includes("running-page")), "equal")', 'changeTopic(4)'], 
-    moveButtons: true, 
-    lessonMap: true, 
-    robinText: 'שימו לב! אחרי שתעברו לעמוד הבא תגיעו לבוחן ולא תוכלו לחזור אחורה'
-  },
-  {
-    // american question 1- page 22
-    divName: ["american-question-1"],
-    functions: ['pop_americanQuestion()', 'disabledButton($("#prev"), "none")', 'disabledButton($("#next"), "none")'], 
-    moveButtons: true, 
-    lessonMap: false, 
-    robinText: 'שימו לב! אחרי שתעברו לעמוד הבא תגיעו לבוחן ולא תוכלו לחזור אחורה'
-  },
-  {
-    // american question 2- page 23
-    divName: ["american-question-2"],
-    functions: ['pop_americanQuestion()', 'disabledButton($("#prev"), "auto")', 'disabledButton($("#next"), "none")'], 
-    moveButtons: true, 
-    lessonMap: false, 
-    robinText: 'שימו לב! אחרי שתעברו לעמוד הבא תגיעו לבוחן ולא תוכלו לחזור אחורה'
-  },
-  {
-    // american question 3- page 24
-    divName: ["american-question-3"],
-    functions: ['pop_americanQuestion()', 'disabledButton($("#next"), "none")'], 
-    moveButtons: true, 
-    lessonMap: false, 
-    robinText: 'שימו לב! אחרי שתעברו לעמוד הבא תגיעו לבוחן ולא תוכלו לחזור אחורה'
-  },
-  {
-    // american question 4- page 25
-    divName: ["american-question-4"],
-    functions: ['pop_americanQuestion()', 'disabledButton($("#next"), "none")'], 
-    moveButtons: true, 
-    lessonMap: false, 
-    robinText: 'שימו לב! אחרי שתעברו לעמוד הבא תגיעו לבוחן ולא תוכלו לחזור אחורה'
-  },
-  {
-    // american question 5- page 26
-    divName: ["american-question-5"],
-    functions: ['pop_americanQuestion()', 'disabledButton($("#next"), "none")'], 
-    moveButtons: true, 
-    lessonMap: false, 
-    robinText: 'שימו לב! אחרי שתעברו לעמוד הבא תגיעו לבוחן ולא תוכלו לחזור אחורה'
-  },
-  {
-    // ending- page 27
-    divName: ["ending"],
-    functions: ['pop_buttons($("#replay"), ArrPages.findIndex(x => x.divName.includes("opening")), "equal")', 'theEnd()'],
-    moveButtons: false, 
-    lessonMap: false, 
-    robinText: ""
-  }
+
 ];
 
+// therapy room
+var Arr_2 = [
+];
+
+// doctor's room
+var Arr_3 = [
+];
+
+// medicines room
+var Arr_4 = [
+];
+
+var matrix = [[
+  {
+    // opening- page 0
+    divName: ["opening"], // the last div contains the speech bubble
+    functions: ['pop_room_buttons($("#room-button-1"))', 'pop_buttons($("#about-button"), 1)', "pop_calculateStrokeTextCSS(16)"] // array of functions that are needed to the page. If the functions contain the word "pop", it will happen only once and will be popped out of the array afterwards
+  },
+  {
+    // about- page 1
+    divName: ["about"],
+    functions: ['pop_buttons($("#back-about-button"), -1)']
+  }
+], Arr_1, Arr_2, Arr_3, Arr_4];
+
+// lesson map
+// what topic is the user currently learning
+var topic_counter = 1;
+// the distance between each circle in the lesson map (for the head movement)- different for each room 
+var topic_distance = 4;
+
+// life
+var nLife = 3;
+
 $(function() {
-  // calls the opening game
+  // calls the opening page
   movePage();
 });
 
 function movePage() {
   // appearance
   // shows current divs
-  for (let i = 0; i < ArrPages[nPage].divName.length; i++) {
-    $("#" + ArrPages[nPage].divName[i]).css("display", "block");
+  for (let i = 0; i < matrix[nRoom][nPage].divName.length; i++) {
+    $("#" + matrix[nRoom][nPage].divName[i]).css("display", "block");
   }
-  // shows bubble speech text (the last div in the divs array contains a bubble speech)
-  if (ArrPages[nPage].robinText !== "") {
-  $("#" + ArrPages[nPage].divName[ArrPages[nPage].divName.length - 1] + " .speech-bubble").html(ArrPages[nPage].robinText);
-  }
-    // controls
-  // if there is no controls, hide the white background
-  if (ArrPages[nPage].moveButtons === false && ArrPages[nPage].lessonMap === false) {
-    $("#controls").css("display", "none");
-  }
-  // if there is controls but they are hidden
-  else if ($("#controls").css("display") === "none") {
-    $("#controls").css("display", "flex");
-  }
-  // show/hide controls
-  controls("moveButtons" ,"#controls .control-button");
-  controls("lessonMap", "#lesson-map");
+ 
   // functions
   // calls the functions of the page
-  if (ArrPages[nPage].functions !== "") {
+  if ("#" + matrix[nRoom][nPage].functions !== "") {
     let nFunction = 0;
-    while (nFunction < ArrPages[nPage].functions.length) {
-      eval(ArrPages[nPage].functions[nFunction]);
+    while (nFunction < matrix[nRoom][nPage].functions.length) {
+      eval(matrix[nRoom][nPage].functions[nFunction]);
       // functions that contains the word "pop" will accur only once
-      if (ArrPages[nPage].functions[nFunction].includes("pop")) {
-        ArrPages[nPage].functions.splice(nFunction , 1);
+      if (matrix[nRoom][nPage].functions[nFunction].includes("pop")) {
+        matrix[nRoom][nPage].functions.splice(nFunction , 1);
         // since the function happens only once there is no need in adding nFunction +1
       } else {
         nFunction++;
       }
     }
   }
+
+  if (matrix[nRoom][nPage].type !== undefined) {
+    // identify type
+    eval(`type_${matrix[nRoom][nPage].type}()`);
+  }
 }
 
-// function that checks if the buttons should be shown or hidden
-function controls(state, object) {
-  if (eval("ArrPages[nPage]." + state) === true && $(object).css("display") === "none") {
-    $(object).css("display", "block");
-  } else if (eval("ArrPages[nPage]." + state) === false && $(object).css("display") === "block") {
-    $(object).css("display", "none");
-  }
+function hidePage() {
+    // hides last divs
+    for (let i = 0; i < matrix[nRoom][nPage].divName.length; i++) {
+      $("#" + matrix[nRoom][nPage].divName[i]).css("display", "none");
+    }
+    // changing checkpoint in lesson map
+    // if the topic changes whem moving page (there are pages with the same topic)
+    // after a game the topic is equal to the content topic and there is no need to change
+    // if (matrix[nRoom][nPage].topic !== undefined) {
+    // }
+}
+
+// function that adds events listeners to room buttons that displays the chosen room- called only one time for each button
+function pop_room_buttons(button) {
+  button.on("click", function() {
+    // hides last divs
+    for (let i = 0; i < matrix[nRoom][nPage].divName.length; i++) {
+      $("#" + matrix[nRoom][nPage].divName[i]).css("display", "none");
+    }
+    // changes room counter
+    nRoom = Number(button.attr("id").slice(-1)); 
+    // display room
+    $(`#room-${nRoom}`).css("display", "block");
+    setTimeout(toggle_room, 3000); 
+    // shows next page
+    movePage(); 
+    check_room(); 
+  });
 }
 
 // function that adds events listeners to buttons that affects the page's display- called only one time for each button
-function pop_buttons(button, number, operation) {
+function pop_buttons(button, number) {
   button.on("click", function() {
-    // hides last divs
-    for (let i = 0; i < ArrPages[nPage].divName.length; i++) {
-      $("#" + ArrPages[nPage].divName[i]).css("display", "none");
+    hidePage();
+    if ($(`#lesson-map-${nRoom} .topic-${topic_counter}`).css("background-image").includes("normal")) {
+    checkpoint(true);
     }
     // changes page counter
-    // if the operation is to add, the number is added to page counter
-    if (operation === "add"){
+    // if the button is prev/next/about (ect), the number is added to page counter
+    if (button.hasClass("move")){
       nPage = nPage + eval(number);
+      // lessom map movememt (ahami head)
+        // if the topic changes whem moving page (there are pages with the same topic)
+        // after a game the topic is equal to the content topic and there is no need to change
+        if ((matrix[nRoom][nPage].topic !== undefined) && (topic_counter !== matrix[nRoom][nPage].topic)) {
+          move_lessonMap(topic_distance * number);
+        }
     }
-    // if the operation is to equal, page counter is compared to the number 
-    else if (operation === "equal") {
+    // if the button is part of the lesson map, page counter is compared to the number 
+    else if (button.hasClass("topic")) {
       nPage = eval(number);
+      // lessom map movememt (ahami head)
+        move_lessonMap(topic_distance * (matrix[nRoom][nPage].topic - topic_counter));
     }
     // shows next page
-    movePage();     
-  })
-}
-
-// function that changes the lesson map according to the user's progress
-changeTopic = newTopic => {
-  // changing the previous topic
-  if (currTopic !== null) {
-    $(`#topic-${currTopic} .topic-text`).css("fill", "rgb(60, 60, 59)");
-    // if it has not been visited before
-    if (!$(`#topic-${currTopic} img`).attr("src").includes("finish")) {
-      if (newTopic > currTopic) {
-        $(`#topic-${currTopic} img`).attr("src", "assets/media/map_finish.svg");
-      }
-    }
-  }
-  currTopic = newTopic;
-  if (currTopic !== null) {
-    // changing the current topic
-    $(`#topic-${currTopic} .topic-text`).css("fill", "rgb(227, 2, 15)");
-    // if it has not been visited before
-    if (!$(`#topic-${currTopic} img`).attr("src").includes("finish")) {
-      $(`#topic-${currTopic} img`).attr("src", "assets/media/map_select.svg");
-    }
-  }
-}
-
-// function that removes exercises from the pages array after they are finished (and the user moved page)
-pop_removeExer = (exerPage) => {
-  ArrPages.splice(nPage + exerPage , 1);
-  // if the player pressed next and nor prev
-  if (exerPage < 0) {
-    nPage--;
-  }
-  // so the function won't be called twice
-  ArrPages[nPage + exerPage].functions.pop();
-}
-
-// function that adds events listeners to bows exrcise carousel's prev and next buttons
-pop_finishExer = (button, exerTypeParam, indexNum) => {
-  // function that changes the carrousel of the bows exercise
-  button.on("click", () => {
-    // exerType === "bow"/"quiver"/"lesson"
-    changeCarousel(indexNum, true);
+    movePage();    
   });
-  exerType = exerTypeParam;
-  Drag();
 }
 
-// exercise's functions
-// function that checks if the user finished the exercise
-finishExer = (indexNum, disappear) => {
-  // represents the item that appear and disappear in the html (bow/arrow)
-  if (exerType === "bow") {
-      finish = 2;
-  } else if (exerType === "quiver") {
-      finish = 0;
-  } else if (exerType === "lesson") {
-      finish = 0;
+// function that is called every time going in to new room to start from stratch
+check_room = () => {
+  topic_counter = 1;
+  nLife = 3;
+  switch (nRoom) {
+    case 1:
+      topic_distance = 13;  
+      break;
+    case 2:
+      topic_distance = 2;  
+      break;
+    case 3:
+      topic_distance = 3;  
+      break;
+    case 4:
+      topic_distance = 2;  
+      break;
+    default:
+      topic_distance = 4; 
   }
-  if (eval("arr_" + exerType).length > (finish + 1)) {
-    changeCarousel(indexNum, disappear);
+  $("#topic-counter").css("right", "-63.5vw");
+}
+
+
+// colors checkpoint if needed
+checkpoint = (condition) => {
+  let curr_checkpoint = $(`#lesson-map-${nRoom} .topic-${topic_counter}`);
+  // if the checkpoint haven't been changed
+  // if (curr_checkpoint.css("background-image").includes("normal")) {
+    // if this is a content page or the user succeded in a game
+    if (condition) {
+      curr_checkpoint.css("background-image", `url("assets/media/2content/checkpoint_right.svg")`);
+      // changing ahami little head to happy
+      if ($("#topic-counter").attr("src") === "assets/media/2content/head_sad.svg") {
+        $("#topic-counter").attr("src", "assets/media/2content/head_happy.svg")
+      }
+    }
+    // the user lost the game
+    else {
+      curr_checkpoint.css("background-image", `url("assets/media/2content/checkpoint_wrong.svg")`);
+      // changing ahami little head to sad
+      if ($("#topic-counter").attr("src") === "assets/media/2content/head_happy.svg") {
+        $("#topic-counter").attr("src", "assets/media/2content/head_sad.svg")
+      }
+    }
+    // the checkpoint is clickable
+    pop_buttons(curr_checkpoint, nPage);
+    curr_checkpoint.addClass("button");
+  // }
+}
+
+// moves ahami lesson map head- after moving topic and after every game
+move_lessonMap = (distance) => {
+  // change lesson map head place
+  $("#topic-counter").animate({right: `+=${distance}vw`}, 1000);
+  // update topic counter
+  if (matrix[nRoom][nPage].type === "game") {
+    topic_counter++;
+  } else {
+    topic_counter = matrix[nRoom][nPage].topic;
   }
-  // if all the items are matched 
+}
+
+// display/hides room image (every room start and with the room button)
+toggle_room = ()  => {
+  let room_div = $(`#room-${nRoom}`);
+  // display the room
+  if (room_div.css("display") === "none") {
+    room_div.css("display","block");
+    room_div.animate({opacity: `1`}, 1500);
+  }
+  // hide the room
   else {
-    if (exerType === "bow") {
-      $(`#arrows-container`).css("display", "none");
-      $("#bow-exer .speech-bubble").text("אתם חדים כמו חץ!");
-    }
-    else if (exerType === "quiver") {
-        $("#quiver-exer .speech-bubble").text("בול פגיעה!");
-        $("#quiver-number").css("visibility", "hidden");
-    } else if (exerType === "lesson") {
-        $("#lesson-exer .speech-bubble").text("אתם שפיצים!");
-        $("#lesson-number").css("visibility", "hidden");
-    }
-    $(`#${exerType}-exer .speech-bubble`).css("font-size", "3rem");
-    // display prev and next buttons
-    $("#controls").css("display", "flex");
-    $("#controls .control-button").css("display", "block");
-    ArrPages[nPage-1].functions.push('pop_removeExer(1)');
-  }
-}
-
-// generic function that disappears and reveals items in carousels
-changeCarousel = (indexNum, disappear) => {
-    // represents the item that appear and disappear in the html (bow/arrow)
-    if (exerType === "bow") {
-      item = "bow";
-      itemsNum = 6;
-    } else if (exerType === "quiver") {
-        item = "quiver-arrow";
-        itemsNum = 4;
-    } else if (exerType === "lesson") {
-        item = "lesson-arrow";
-        itemsNum = 7;
-    }
-    // previous item disappear
-    if (disappear === true) {
-      $(`#${item}-${eval("arr_" + exerType)[eval("curr_" + exerType)].number}`).css("display", "none");
-      $(`#${item}-${eval("arr_" + exerType)[eval("curr_" + exerType)].number}`).css("opacity", "0");
-    }
-    // changing the item number
-    if (window["curr_" + exerType] + indexNum < 0 ) {
-        window["curr_" + exerType] = window["arr_" + exerType].length - 1;
-    } else if (window["curr_" + exerType] + indexNum === window["arr_" + exerType].length) {
-        window["curr_" + exerType] = 0;
-    } else {
-        window["curr_" + exerType]  += indexNum;
-    }
-    // current item changes
-    $(`#${item}-${eval("arr_" + exerType)[eval("curr_" + exerType)].number}`).css("display", "block");
-    $(`#${item}-${eval("arr_" + exerType)[eval("curr_" + exerType)].number}`).animate({opacity: "1"}, 450);
-    $(`#${exerType}-number`).text(`${eval("arr_" + exerType)[eval("curr_" + exerType)].number}/${itemsNum}`);
-    // bow title change
-    if (exerType === "bow") {
-        $(`#bow-title`).text(arr_bow[curr_bow].bowTitle);
-    }
-}
-
-Drag = () => {
-  $(`#${exerType}-exer .arrow`).draggable({
-      revert: "invalid",
-      revertDuration: 200,
-      stack: "img",
-      // so drag won't get stuck because of css property bottom = 0
-      drag: function( event, ui ) {
-         if (exerType === "quiver" || exerType === "lesson") {
-          $(this).css({
-              top: $(this).position().top,
-              bottom: "auto"
-          });
-         }
-      }
-      // containment: "parent"
+    room_div.animate({opacity: `0`}, 1500, function() {
+    room_div.css("display","none");
     });
-
-  for (let i = 1; i <= window["arr_" + exerType].length; i++) {
-  $(`#${exerType}-drop-${i}`).droppable({
-      tolerance: "intersect",
-      accept: $(`.${exerType}-arrow-${i}`),
-      drop: function(e,ui) {
-          if (exerType === "bow") {
-            if (i === 1) {
-              ui.draggable.css("top", "-49.5vh");
-            } else if (i === 2) {
-              ui.draggable.css("top", "-32.5vh");
-            } else if (i === 5) {
-              ui.draggable.css("top", "-41vh");
-            } else if (i === 6) {
-              ui.draggable.css("top", "-25vh");
-            }
-              // setTimeout(function(){
-                ui.draggable.animate({left: "-100vw"}, 200, function() {
-                  removeItem();
-              // }, 1000);
-              });
-          } else if (exerType === "quiver" || exerType === "lesson") {
-            if (exerType === "lesson") {
-              ui.draggable.css({
-                left: "0",
-                right: "-23vw"
-              })
-            } else if (exerType === "quiver") {
-              if (i === 1) {
-                ui.draggable.css({
-                  top: "0",
-                  bottom: "-45vh"
-                })
-              } else if (i === 2) {
-                ui.draggable.css({
-                  top: "0",
-                  bottom: "5vh"
-                })
-              } else if (i === 3) {
-                ui.draggable.css({
-                  top: "0",
-                  bottom: "30vh"
-                })
-              } else if (i === 4) {
-                ui.draggable.css({
-                  top: "0",
-                  bottom: "-20vh"
-                })
-              }
-              ui.draggable.css({
-                left: "15vw"
-              })
-            }
-              ui.draggable.draggable('disable');
-              removeItem();
-          }
-       }
-      });
-  } 
+  }
 }
 
-// function that removes the item from the array
-removeItem = () => {
-  let disappear;
-  if (exerType === "bow") {
-      disappear = true;
-  } else if (exerType === "quiver" || exerType === "lesson") {
-      disappear = false;
+pop_watch_room_button = () => {
+  $("#watch-room-button").on("click", function() {
+    toggle_room();
+    // display back button (when entering new room there is no back button, therefore it is in separated tag in HTML)
+    setTimeout(switch_class, 1500, $("#back-room-button"), "none", "block");
+    switch_class($("#controls"), "flex", "none"); 
+  });
+  $("#back-room-button").on("click", function() {
+    toggle_room();
+    switch_class($("#back-room-button"), "block", "none");
+    setTimeout(switch_class, 1500, $("#controls"), "none", "flex");
+  });
+}
+
+// setting content page
+type_content = () => {
+  // display controls
+  switch_class($("#controls"), "none", "flex");
+  switch_class($(`#lesson-map-${nRoom}`), "none", "flex");
+}
+
+// setting timer
+type_quiz = () => {
+
+}
+
+// function that switches classes
+switch_class = (object, prevClass, currClass) => {
+  if (object.hasClass(prevClass)) {
+    object.removeClass(prevClass);
+    object.addClass(currClass);
   }
-  // animation of disappear
-  $.when(finishExer(1, disappear)).then(function() {
-      // finishExer function raises curr var
-      if (window["curr_" + exerType] !== 0) {
-          --window["curr_" + exerType];
-      } else {
-          window["curr_" + exerType] = window["arr_" + exerType].length -1;
-      }
-      // removing from array
-      window["arr_" + exerType].splice( window["curr_" + exerType], 1);
-      if (window["curr_" + exerType] === window["arr_" + exerType].length) {
-          window["curr_" + exerType] = 0;
-      }
-      if (window["arr_" + exerType].length === 1) {
-          $(`#${exerType}-controls .control-button`).css("visibility", "hidden");
-      }
-  }); 
+}	
+
+// text css opening
+function pop_calculateStrokeTextCSS(steps) {
+  var css = "";
+  for (var i = 0; i < steps; i++) {
+    var angle = (i * 2 * Math.PI) / steps;
+    var cos = Math.round(10000 * Math.cos(angle)) / 10000;
+    var sin = Math.round(10000 * Math.sin(angle)) / 10000;
+    css +=
+      "calc(var(--stroke-width) * " +
+      cos +
+      ") calc(var(--stroke-width) * " +
+      sin +
+      ") 0 var(--stroke-color),";
+  }
+  return css;
 }
