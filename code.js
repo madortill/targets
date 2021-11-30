@@ -314,21 +314,21 @@ function pop_buttons(button, number, operation) {
 changeTopic = newTopic => {
   // changing the previous topic
   if (currTopic !== null) {
-    $(`#topic-${currTopic} .topic-text`).css("fill", "rgb(60, 60, 59)");
+    $(`#topic-${currTopic} .topic-text`).attr("src", $(`#topic-${currTopic} .topic-text`).attr("src").slice(0,-8) + ".svg");
     // if it has not been visited before
-    if (!$(`#topic-${currTopic} img`).attr("src").includes("finish")) {
+    if (!$(`#topic-${currTopic} .lesson-map-target`).attr("src").includes("finish")) {
       if (newTopic > currTopic) {
-        $(`#topic-${currTopic} img`).attr("src", "assets/media/map_finish.svg");
+        $(`#topic-${currTopic} .lesson-map-target`).attr("src", "assets/media/map_finish.svg");
       }
     }
   }
   currTopic = newTopic;
   if (currTopic !== null) {
     // changing the current topic
-    $(`#topic-${currTopic} .topic-text`).css("fill", "rgb(227, 2, 15)");
+    $(`#topic-${currTopic} .topic-text`).attr("src", $(`#topic-${currTopic} .topic-text`).attr("src").slice(0,-4) + "_red.svg");
     // if it has not been visited before
-    if (!$(`#topic-${currTopic} img`).attr("src").includes("finish")) {
-      $(`#topic-${currTopic} img`).attr("src", "assets/media/map_select.svg");
+    if (!$(`#topic-${currTopic} .lesson-map-target`).attr("src").includes("finish")) {
+      $(`#topic-${currTopic} .lesson-map-target`).attr("src", "assets/media/map_select.svg");
     }
   }
 }
