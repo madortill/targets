@@ -120,7 +120,7 @@ var ArrPages = [
     functions: ['pop_finishExer($("#prev-bow"), "bow", -1)', 'pop_finishExer($("#next-bow"), "bow", 1)'],
     moveButtons: false, 
     lessonMap: false, 
-    robinText: "התאימו בין 4 מטרות שנוסחו לא נכון (החיצים), לבין כללי הניסוח שהופרו (הקשתות)"
+    robinText: "התאימו בין 4 מטרות שנוסחו לא נכון (החיצים), לבין כללי הניסוח שהופרו (הקשתות)<br>שים לב! יש יותר כללים מאשר מטרות"
   },
   {
     // example for writing goals- page 14
