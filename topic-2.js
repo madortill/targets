@@ -43,7 +43,7 @@ var arr_quiver = [
     }
 ];
 
-const arrDropDown = ["מטרת העל", "מטרות ביניים", "חייל", "יסביר", "חייל", "3", "יחבוש"];
+const arrDropDown = ["מטרת העל", "מטרות ביניים", "חניך", "יסביר", "חניך", "3", "יחבוש"];
 var currDropDown = 0;
 
 // function that activates the drop-downs and shows the check button
